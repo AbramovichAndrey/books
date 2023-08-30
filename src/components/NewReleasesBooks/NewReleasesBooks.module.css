@@ -1,8 +1,13 @@
 .books {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  align-items: stretch;
 }
 .book {
+  flex: 0 0 calc(100% / 3 - 24px);
   margin: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+

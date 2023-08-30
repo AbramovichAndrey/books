@@ -1,31 +1,34 @@
 import React, { useEffect } from "react";
 import styles from "./Main.module.css";
 import { IBook } from "../../models/book.model";
-import { getSlice } from "../store/posts/posts.selectors";
+import { getSlice } from "../store/books/books.selectors";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsPostsLoading, setPosts } from "../store/posts/posts.reducer";
+import { setIsBooksLoading, setBooks } from "../store/books/books.reducer";
 import { getBooks } from "../../api/getBooks";
 import { RootState } from "../store";
 import NewReleasesBooks from "../NewReleasesBooks/NewReleasesBooks";
 import Subscribe from "../Subscribe/Subscribe";
+import Typography from "../Typography/Typography";
 
 const Main: React.FC = () => {
-  const { posts, isPostsLoading: loading } = useSelector(getSlice);
+  const { books, isBooksLoading: loading } = useSelector(getSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setIsPostsLoading(true));
+    dispatch(setIsBooksLoading(true));
     getBooks()
-      .then((data) => dispatch(setPosts(data.books)))
-      .finally(() => dispatch(setIsPostsLoading(false)));
-    console.log(posts);
+      .then((data) => dispatch(setBooks(data.books)))
+      .finally(() => dispatch(setIsBooksLoading(false)));
   }, [dispatch]);
 
   return (
     <div>
+      <div className={styles.title}>
+        <Typography variant="h1" children={"NEW RELEASES BOOKS"} />
+      </div>
       <div className={styles.books}>
         {loading && "Loading"}
-        {!loading && posts.length > 0 && <NewReleasesBooks books={posts} />}
+        {!loading && books.length > 0 && <NewReleasesBooks books={books} />}
       </div>
       <div className={styles.subscribeWrapper}>
         <Subscribe />
