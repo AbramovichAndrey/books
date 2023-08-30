@@ -1,0 +1,14 @@
+.button {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+.icon {
+  font-size: 25px;
+  color: #313037;
+}
+.icon:hover {
+  color: #fc857f;
+}

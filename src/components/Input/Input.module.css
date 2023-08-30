@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.label {
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid rgb(203, 203, 203);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: gray;
+}
+
+.input:disabled {
+  background-color: rgb(242, 242, 242);
+  border-color: gray;
+}
+
+.inputError,
+.inputError:focus {
+  border-color: red;
+}
+
+.helperText {
+  font-size: 12px !important;
+  margin: 4px 0 0 8px;
+}
+
+.helperTextError {
+  color: red !important;
+}

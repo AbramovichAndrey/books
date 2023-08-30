@@ -1,0 +1,11 @@
+* {
+  list-style: none;
+}
+.books {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+.subscribeWrapper {
+  margin: 20px 0 40px 0;
+}

@@ -1,0 +1,39 @@
+.wrapper {
+  width: 1120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.icon {
+  font-size: 25px;
+}
+.iconWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+.input {
+  width: 500px;
+  border-radius: 0px;
+  height: 50px;
+}
+.searchBut {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: #313037;
+  position: absolute;
+  top: 2px;
+  right: 20px;
+  font-size: 25px;
+}
+.inputWrapper {
+  display: flex;
+  position: relative;
+}

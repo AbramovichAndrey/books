@@ -1,0 +1,14 @@
+.form {
+  width: 624px;
+  border: 1px solid gray;
+  padding: 20px;
+}
+.button {
+  width: 100%;
+  margin-top: 50px;
+  border-radius: 10px;
+}
+.text {
+  text-align: center;
+  margin-top: 20px;
+}

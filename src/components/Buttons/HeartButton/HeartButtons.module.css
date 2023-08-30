@@ -1,0 +1,17 @@
+.icon {
+  font-size: 25px;
+  color: white;
+}
+.icon:hover {
+  color: #fc857f;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #313037;
+  border: none;
+}
+.button:disabled {
+  background-color: #a8a8a8;
+}
