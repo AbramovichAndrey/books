@@ -1,0 +1,8 @@
+.backButton {
+  font-size: 36px;
+  background-color: transparent;
+  border: none;
+}
+.backButton:hover {
+  cursor: pointer;
+}

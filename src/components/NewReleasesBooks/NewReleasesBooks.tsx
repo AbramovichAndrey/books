@@ -14,7 +14,12 @@ const NewReleasesBooks: React.FC<INewReleasesBookProps> = ({ books }) => {
       <ul className={styles.books}>
         {books.map((book) => (
           <li className={styles.book} key={book.isbn13}>
-            <BookCard book={book} />
+            <NavLink
+              style={{ textDecoration: "none" }}
+              to={`/book/${book.isbn13}`}
+            >
+              <BookCard book={book} />
+            </NavLink>
           </li>
         ))}
       </ul>

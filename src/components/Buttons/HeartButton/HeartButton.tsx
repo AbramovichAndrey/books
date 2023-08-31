@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./HeartButtons.module.css";
+import styles from "./HeartButton.module.css";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import clsx from "clsx";
 
@@ -8,7 +8,7 @@ interface IHeartButtonsProps {
   disabled?: boolean;
 }
 
-const HeartButtons: React.FC<IHeartButtonsProps> = ({
+const HeartButton: React.FC<IHeartButtonsProps> = ({
   className,
   disabled = false,
 }) => {
@@ -19,4 +19,4 @@ const HeartButtons: React.FC<IHeartButtonsProps> = ({
   );
 };
 
-export default HeartButtons;
+export default HeartButton;

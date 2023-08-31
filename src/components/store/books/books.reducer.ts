@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IBook } from "../../../models/book.model";
+import { IBookDetails } from "../../../models/bookDetails.model";
+
 
 interface BookState {
   isBooksLoading: boolean;
   books: IBook[];
 
   isBookLoading: boolean;
-  book: IBook | null;
+  book: IBookDetails | null;
 }
 
 const initialState: BookState = {
@@ -31,7 +33,7 @@ const bookSlice = createSlice({
     setIsBookLoading: (state, action: PayloadAction<boolean>) => {
       state.isBookLoading = action.payload;
     },
-    setBook: (state, action: PayloadAction<IBook>) => {
+    setBook: (state, action: PayloadAction<IBookDetails>) => {
       state.book = action.payload;
     },
   },

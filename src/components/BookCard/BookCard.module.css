@@ -11,7 +11,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
+  padding-right: 5px;
 }
 .text {
   margin-top: 12px;
+}
+.container{
+  /* flex: 0 0 calc(100% / 3 - 24px); */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
