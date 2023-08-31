@@ -1,0 +1,11 @@
+.iconsWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-right: 5px;
+}
+.text {
+  margin-top: 12px;
+}

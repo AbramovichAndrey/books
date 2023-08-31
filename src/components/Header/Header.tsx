@@ -8,6 +8,7 @@ import {
   AiOutlineUser,
   AiOutlineSearch,
 } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
 
 const initialValue = {
   search: "",
@@ -23,7 +24,9 @@ const Header: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <div>
-        <Typography variant={"h1"} children={"BOOKSTORE"} />
+        <NavLink style={{ textDecoration: "none" }} to={"/"}>
+          <Typography variant={"h1"} children={"BOOKSTORE"} />
+        </NavLink>
       </div>
       <div className={styles.inputWrapper}>
         <Input

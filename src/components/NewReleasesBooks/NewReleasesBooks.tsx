@@ -15,7 +15,7 @@ const NewReleasesBooks: React.FC<INewReleasesBookProps> = ({ books }) => {
         {books.map((book) => (
           <li className={styles.book} key={book.isbn13}>
             <NavLink
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "black" }}
               to={`/book/${book.isbn13}`}
             >
               <BookCard book={book} />

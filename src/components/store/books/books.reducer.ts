@@ -36,10 +36,13 @@ const bookSlice = createSlice({
     setBook: (state, action: PayloadAction<IBookDetails>) => {
       state.book = action.payload;
     },
+    deleteBook: (state)=>{
+      state.book=initialState.book;
+    }
   },
 });
 
-export const { setIsBooksLoading, setBooks, setIsBookLoading, setBook } =
+export const { setIsBooksLoading, setBooks, setIsBookLoading, setBook,deleteBook } =
   bookSlice.actions;
 
 export default bookSlice.reducer;

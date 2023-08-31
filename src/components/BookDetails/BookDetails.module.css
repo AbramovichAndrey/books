@@ -2,7 +2,67 @@
   font-size: 36px;
   background-color: transparent;
   border: none;
+  margin-top: 40px;
 }
 .backButton:hover {
   cursor: pointer;
+}
+.infoWrapper {
+  padding-top: 50px;
+  border-top: 1px solid #a8a8a8;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.textWrap {
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.img {
+  width: 500px;
+  height: 400px;
+}
+.addBut {
+  margin-top: 30px;
+  width: 100%;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+.heartButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 50px;
+  width: 50px;
+}
+.imgBG {
+  position: relative;
+}
+.previewBook {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.previewBook:hover {
+  cursor: pointer;
+}
+.tabsContent {
+  padding: 50px 0;
+}
+.tabs {
+  margin-top: 50px;
+}
+.socialIcon {
+  font-size: 25px;
+  cursor: pointer;
+}
+.socialIconWrapper {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 50px;
 }

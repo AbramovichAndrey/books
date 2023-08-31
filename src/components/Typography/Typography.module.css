@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:opsz,wght@6..12,300&display=swap");
 
 .primary {
   color: #313037;
@@ -16,7 +16,7 @@
   font-family: "Bebas Neue", sans-serif;
 }
 .secondaryFont {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 
 h1,

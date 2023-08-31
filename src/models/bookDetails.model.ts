@@ -9,5 +9,5 @@ export interface IBookDetails extends IBook {
   year: number;
   rating: number;
   desc: string;
-  pdf: {};
+  pdf: {} ;
 }

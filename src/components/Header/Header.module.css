@@ -37,3 +37,6 @@
   display: flex;
   position: relative;
 }
+.icon:hover {
+  cursor: pointer;
+}

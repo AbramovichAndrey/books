@@ -3,11 +3,11 @@ import styles from "./MainButton.module.css";
 import clsx from "clsx";
 import Typography from "../../Typography/Typography";
 
-interface IMainButtonProps {
+interface IMainButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   className?: string;
   disabled?: boolean;
-  onClick: (e: React.MouseEvent) => void;
 }
 
 const MainButton: React.FC<IMainButtonProps> = ({
@@ -22,7 +22,7 @@ const MainButton: React.FC<IMainButtonProps> = ({
       disabled={disabled}
       className={clsx(styles.button, className)}
     >
-      {children}
+      {<Typography children={children} />}
     </button>
   );
 };

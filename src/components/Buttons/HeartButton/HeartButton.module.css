@@ -4,6 +4,7 @@
 }
 .icon:hover {
   color: #fc857f;
+  cursor: pointer;
 }
 .button {
   display: flex;
@@ -12,6 +13,7 @@
   background-color: #313037;
   border: none;
 }
+
 .button:disabled {
   background-color: #a8a8a8;
 }

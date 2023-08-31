@@ -14,6 +14,7 @@
 }
 .button:hover {
   background-color: #5b5a62;
+  cursor: pointer;
 }
 .button:disabled {
   background-color: #a8a8a8;

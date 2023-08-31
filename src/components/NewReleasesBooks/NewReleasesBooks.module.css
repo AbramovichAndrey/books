@@ -1,14 +1,15 @@
 .books {
   display: flex;
   flex-wrap: wrap;
+  position: relative;
   align-items: stretch;
 }
 .book {
   flex: 0 0 calc(100% / 3 - 24px);
   margin: 12px;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: space-between; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .book:hover {
   cursor: pointer;

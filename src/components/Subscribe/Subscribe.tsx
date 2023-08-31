@@ -29,7 +29,7 @@ const Subscribe = () => {
         />
         <MainButton
           className={styles.button}
-          children={"Subscribe"}
+          children={<Typography color="secondary" children={"Subscribe"} />}
           onClick={function (e: React.MouseEvent<Element, MouseEvent>): void {
             throw new Error("Function not implemented.");
           }}
