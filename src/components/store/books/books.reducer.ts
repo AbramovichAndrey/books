@@ -28,7 +28,7 @@ const bookSlice = createSlice({
       state.isBooksLoading = action.payload;
     },
     setBooks: (state, action: PayloadAction<IBook[]>) => {
-      state.books = action.payload;
+      state.books = action.payload.map((book)=>({...book,isFavorite: false}));
     },
     setIsBookLoading: (state, action: PayloadAction<boolean>) => {
       state.isBookLoading = action.payload;
@@ -38,11 +38,18 @@ const bookSlice = createSlice({
     },
     deleteBook: (state)=>{
       state.book=initialState.book;
+    },
+    toggleBookIsFavorite : (state,action: PayloadAction<IBook["isbn13"]>) =>{
+      const book = state.books.find((p)=>p.isbn13===action.payload);
+
+      if(book){
+        book.isFavorite = !book.isFavorite
+      }
     }
   },
 });
 
-export const { setIsBooksLoading, setBooks, setIsBookLoading, setBook,deleteBook } =
+export const { setIsBooksLoading, setBooks, setIsBookLoading, setBook,deleteBook,toggleBookIsFavorite } =
   bookSlice.actions;
 
 export default bookSlice.reducer;

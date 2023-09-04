@@ -42,7 +42,12 @@ const Header: React.FC = () => {
         </button>
       </div>
       <div className={styles.iconWrapper}>
-        <AiOutlineHeart className={styles.icon} />
+        <NavLink
+          style={{ textDecoration: "none", color: "black" }}
+          to={"/favorites"}
+        >
+          <AiOutlineHeart className={styles.icon} />
+        </NavLink>
         <AiOutlineShopping className={styles.icon} />
         <AiOutlineUser className={styles.icon} />
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, MouseEvent } from "react";
 import styles from "./BookDetails.module.css";
 import { BsArrowLeft } from "react-icons/bs";
 import { useParams } from "react-router";
@@ -8,6 +8,7 @@ import {
   setBook,
   setIsBookLoading,
   deleteBook,
+  toggleBookIsFavorite,
 } from "../store/books/books.reducer";
 import { getBook } from "../../api/getBook";
 import RandomColor from "../RandomColor/RandomColor";
@@ -34,9 +35,20 @@ const tabs: Tab[] = [
 const BooksDetails: React.FC = () => {
   const colors = ["#D7E4FD", "#CAEFF0", "#F4EEFD", "#FEE9E2"];
   const { id: bookId } = useParams();
-  const { book, isBookLoading: loading } = useSelector(getSlice);
+  const { book, isBookLoading: loading, books } = useSelector(getSlice);
   const [activeTab, setActiveTab] = useState(tabs[0].value);
   const dispatch = useDispatch();
+
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+
+    if (book?.isbn13 !== undefined) {
+      dispatch(toggleBookIsFavorite(book?.isbn13));
+      const favoriteBooks = books.filter((b) => b.isFavorite);
+      console.log();
+      localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
+    }
+  };
 
   const handleChangeTab = (tab: Tab) => {
     // e.preventDefault();
@@ -79,7 +91,10 @@ const BooksDetails: React.FC = () => {
                   src={book?.image}
                   alt={book?.title}
                 />
-                <HeartButtons className={styles.heartButton} />
+                <HeartButtons
+                  onClick={handleClick}
+                  className={styles.heartButton}
+                />
               </RandomColor>
             </div>
             <div className={styles.infoWrapper}>
@@ -146,11 +161,6 @@ const BooksDetails: React.FC = () => {
                   children={
                     <Typography color="secondary" children={"ADD TO CARD"} />
                   }
-                  onClick={function (
-                    e: React.MouseEvent<Element, MouseEvent>
-                  ): void {
-                    throw new Error("Function not implemented.");
-                  }}
                 />
                 <div className={styles.previewBook}>
                   <NavLink
