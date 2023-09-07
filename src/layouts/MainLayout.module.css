@@ -6,3 +6,9 @@
   max-width: 1120px;
   margin: 0 auto;
 }
+.main {
+  min-height: calc(100vh - (95px + 120px));
+}
+.header {
+  max-height: 95px;
+}

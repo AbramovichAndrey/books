@@ -22,7 +22,7 @@ const MainButton: React.FC<IMainButtonProps> = ({
       disabled={disabled}
       className={clsx(styles.button, className)}
     >
-      {<Typography children={children} />}
+      {<Typography variant="span" children={children} />}
     </button>
   );
 };

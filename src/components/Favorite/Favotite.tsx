@@ -1,26 +1,51 @@
-import React from "react";
-import { IBook } from "../../models/book.model";
-import BookCard from "../BookCard/BookCard";
+import React, { useEffect } from "react";
 import styles from "./Favorite.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getSlice } from "../store/books/books.selectors";
+import { setFavorites } from "../store/books/books.reducer";
+import Typography from "../Typography/Typography";
+import BookCardFavorite from "../BookCardFavorite/BookCardFavorite";
+import { BsArrowLeft } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
 
 const Favorite: React.FC = () => {
-  const favBLocalStorage = localStorage.getItem("favorites");
-  let favoriteBooks = [];
+  const { favoriteBooks } = useSelector(getSlice);
 
-  if (favBLocalStorage) {
-    favoriteBooks = JSON.parse(favBLocalStorage);
-  } else {
-    favoriteBooks = [];
+  const dispath = useDispatch();
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
+  }, [favoriteBooks]);
+
+  useEffect(() => {
+    const favBLocalStorage = localStorage.getItem("favorites");
+    if (favBLocalStorage) {
+      dispath(setFavorites(JSON.parse(favBLocalStorage)));
+    }
+  }, []);
+
+  if (favoriteBooks.length === 0) {
+    return <Typography>Empty</Typography>;
   }
+
   return (
-    <ul className={styles.books}>
-      {typeof favoriteBooks === "object" &&
-        favoriteBooks.map((book: IBook) => (
+    <>
+      <div>
+        <NavLink to={"/"}>
+          <button className={styles.backButton}>
+            <BsArrowLeft />
+          </button>
+        </NavLink>
+        <Typography variant="h1">Favorites</Typography>
+      </div>
+      <ul className={styles.books}>
+        {favoriteBooks.map((book) => (
           <li className={styles.book} key={book.isbn13}>
-            <BookCard book={book} />
+            <BookCardFavorite book={book} />
           </li>
         ))}
-    </ul>
+      </ul>
+    </>
   );
 };
 

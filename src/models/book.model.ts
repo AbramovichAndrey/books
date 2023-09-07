@@ -5,5 +5,4 @@ export interface IBook{
     price: string,
     image: string,
     url: string,
-    isFavorite : boolean,
 }

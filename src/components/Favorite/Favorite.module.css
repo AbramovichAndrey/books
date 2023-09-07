@@ -1,0 +1,16 @@
+.books {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.backButton {
+  font-size: 36px;
+  background-color: transparent;
+  border: none;
+  margin-top: 40px;
+}
+.backButton:hover {
+  cursor: pointer;
+}

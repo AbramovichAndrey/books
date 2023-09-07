@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./RandomColor.module.css";
 
 function arrayRandElement(arr: string[]) {
@@ -7,22 +7,28 @@ function arrayRandElement(arr: string[]) {
   return arr[rand];
 }
 
+const colors = ["#D7E4FD", "#CAEFF0", "#F4EEFD", "#FEE9E2"];
+
 interface IRandomColorProps {
-  colors: string[];
   children: React.ReactNode;
   className?: string;
+  fullWidth?: boolean;
 }
 
 const RandomColor: React.FC<IRandomColorProps> = ({
   children,
-  colors,
   className,
+  fullWidth,
 }) => {
-  const color: string = arrayRandElement(colors);
+  const color: string = useMemo(() => arrayRandElement(colors), []);
 
   return (
     <div
-      className={clsx(styles.colorWrapper, className)}
+      className={clsx(
+        styles.colorWrapper,
+        { [styles.fullWidth]: fullWidth },
+        className
+      )}
       style={{ backgroundColor: color }}
     >
       {children}

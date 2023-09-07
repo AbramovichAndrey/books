@@ -10,12 +10,10 @@ interface ICardProps {
 }
 
 const Card: React.FC<ICardProps> = ({ book }) => {
-  const colors = ["#D7E4FD", "#CAEFF0", "#F4EEFD", "#FEE9E2"];
-
   return (
     <>
       <div className={styles.wrapper}>
-        <RandomColor colors={colors}>
+        <RandomColor fullWidth>
           <img src={book.image} alt={book.title} />
         </RandomColor>
         <Typography className={styles.text} variant="h5">
@@ -30,7 +28,7 @@ const Card: React.FC<ICardProps> = ({ book }) => {
           {book.subtitle}
         </Typography>
       </div>
-      <BookActions book={book} />
+      <BookActions price={book.price} rating={4} />
     </>
   );
 };

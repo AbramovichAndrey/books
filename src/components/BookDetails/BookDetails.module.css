@@ -14,25 +14,12 @@
   display: flex;
   flex-direction: column;
 }
-.textWrap {
-  display: flex;
-  justify-content: space-between;
-}
 .wrapper {
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
 }
-.img {
-  width: 500px;
-  height: 400px;
-}
-.addBut {
-  margin-top: 30px;
-  width: 100%;
-  font-size: 22px;
-  letter-spacing: 2px;
-}
+
 .heartButton {
   position: absolute;
   right: 0;
@@ -42,21 +29,10 @@
 }
 .imgBG {
   position: relative;
+  width: 500px;
+  height: 400px;
 }
-.previewBook {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-.previewBook:hover {
-  cursor: pointer;
-}
-.tabsContent {
-  padding: 50px 0;
-}
-.tabs {
-  margin-top: 50px;
-}
+
 .socialIcon {
   font-size: 25px;
   cursor: pointer;

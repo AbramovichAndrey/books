@@ -25,7 +25,7 @@ const Header: React.FC = () => {
     <div className={styles.wrapper}>
       <div>
         <NavLink style={{ textDecoration: "none" }} to={"/"}>
-          <Typography variant={"h1"} children={"BOOKSTORE"} />
+          <Typography variant={"h1"}>BOOKSTORE</Typography>
         </NavLink>
       </div>
       <div className={styles.inputWrapper}>

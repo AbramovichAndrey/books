@@ -6,6 +6,13 @@
   color: #fc857f;
   cursor: pointer;
 }
+.iconFill {
+  font-size: 25px;
+  color: #fc857f;
+}
+.iconFill:hover {
+  cursor: pointer;
+}
 .button {
   display: flex;
   justify-content: center;

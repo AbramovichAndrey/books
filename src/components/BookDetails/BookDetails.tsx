@@ -1,4 +1,4 @@
-import React, { useEffect, useState, MouseEvent } from "react";
+import React, { useEffect, MouseEvent } from "react";
 import styles from "./BookDetails.module.css";
 import { BsArrowLeft } from "react-icons/bs";
 import { useParams } from "react-router";
@@ -14,46 +14,29 @@ import { getBook } from "../../api/getBook";
 import RandomColor from "../RandomColor/RandomColor";
 import HeartButtons from "../Buttons/HeartButton/HeartButton";
 import { NavLink } from "react-router-dom";
-import BookActions from "../BookAction/BookActions";
 import Typography from "../Typography/Typography";
-import MainButton from "../Buttons/MainButton/MainButton";
-import Tabs, { Tab } from "../Tabs/Tabs";
 import { SlSocialFacebook } from "react-icons/sl";
 import { CiTwitter } from "react-icons/ci";
 import { FiMoreHorizontal } from "react-icons/fi";
 import Subscribe from "../Subscribe/Subscribe";
-
-const tabs: Tab[] = [
-  {
-    label: "Description",
-    value: "description",
-  },
-  { label: "Authors", value: "authors" },
-  { label: "Reviews", value: "reviews" },
-];
+import BookDetailsTabs from "../BookDetailsTabs/BookDetailsTabs";
+import BookDetailsInfo from "../BookDetailsInfo/BookDetailsInfo";
 
 const BooksDetails: React.FC = () => {
-  const colors = ["#D7E4FD", "#CAEFF0", "#F4EEFD", "#FEE9E2"];
   const { id: bookId } = useParams();
-  const { book, isBookLoading: loading, books } = useSelector(getSlice);
-  const [activeTab, setActiveTab] = useState(tabs[0].value);
+  const { book, isBookLoading: loading, favoriteBooks } = useSelector(getSlice);
   const dispatch = useDispatch();
 
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
-
-    if (book?.isbn13 !== undefined) {
-      dispatch(toggleBookIsFavorite(book?.isbn13));
-      const favoriteBooks = books.filter((b) => b.isFavorite);
-      console.log();
-      localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
+    if (book) {
+      dispatch(toggleBookIsFavorite(book));
     }
   };
 
-  const handleChangeTab = (tab: Tab) => {
-    // e.preventDefault();
-    setActiveTab(tab.value);
-  };
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
+  }, [favoriteBooks]);
 
   useEffect(() => {
     if (!bookId) return;
@@ -84,10 +67,10 @@ const BooksDetails: React.FC = () => {
             <Typography variant="h1" children={book.title} />
           </div>
           <div className={styles.wrapper}>
+            {/* Image */}
             <div>
-              <RandomColor className={styles.imgBG} colors={colors}>
+              <RandomColor className={styles.imgBG}>
                 <img
-                  className={styles.img}
                   src={book?.image}
                   alt={book?.title}
                 />
@@ -97,120 +80,17 @@ const BooksDetails: React.FC = () => {
                 />
               </RandomColor>
             </div>
+
+            {/* Information  */}
             <div className={styles.infoWrapper}>
-              <BookActions book={book} />
-              <div>
-                <div className={styles.textWrap}>
-                  <Typography
-                    variant="span"
-                    font="secondaryFont"
-                    color="secondary"
-                    children={"Authors"}
-                  />
-                  <Typography
-                    variant="span"
-                    font="secondaryFont"
-                    color="primary"
-                    children={book.authors}
-                  />
-                </div>
-                <div className={styles.textWrap}>
-                  <Typography
-                    variant="span"
-                    font="secondaryFont"
-                    color="secondary"
-                    children={"Publisher"}
-                  />
-                  <Typography
-                    variant="span"
-                    font="secondaryFont"
-                    color="primary"
-                    children={book.publisher}
-                  />
-                </div>
-                <div className={styles.textWrap}>
-                  <Typography
-                    variant="span"
-                    font="secondaryFont"
-                    color="secondary"
-                    children={"Language"}
-                  />
-                  <Typography
-                    variant="span"
-                    font="secondaryFont"
-                    color="primary"
-                    children={"English"}
-                  />
-                </div>
-                <div className={styles.textWrap}>
-                  <Typography
-                    variant="span"
-                    font="secondaryFont"
-                    color="secondary"
-                    children={"Format"}
-                  />
-                  <Typography
-                    variant="span"
-                    font="secondaryFont"
-                    color="primary"
-                    children={"Paper book / ebook (PDF)"}
-                  />
-                </div>
-                <MainButton
-                  className={styles.addBut}
-                  children={
-                    <Typography color="secondary" children={"ADD TO CARD"} />
-                  }
-                />
-                <div className={styles.previewBook}>
-                  <NavLink
-                    style={{ textDecoration: "none" }}
-                    to={"https://itbook.store/files/9781617294136/chapter2.pdf"}
-                  >
-                    <Typography
-                      variant="p"
-                      font="secondaryFont"
-                      children={"Preview book"}
-                    />
-                  </NavLink>
-                </div>
-              </div>
+              <BookDetailsInfo book={book} />
             </div>
           </div>
-          <Tabs
-            className={styles.tabs}
-            activeTab={activeTab}
-            tabs={tabs}
-            onTabClick={handleChangeTab}
-          />
 
-          {!loading && activeTab === "description" && (
-            <Typography
-              className={styles.tabsContent}
-              variant="p"
-              font="secondaryFont"
-              children={book.desc}
-            />
-          )}
+          {/* Tabs */}
+          <BookDetailsTabs book={book} />
 
-          {!loading && activeTab === "authors" && (
-            <Typography
-              className={styles.tabsContent}
-              variant="p"
-              font="secondaryFont"
-              children={book.authors}
-            />
-          )}
-
-          {!loading && activeTab === "reviews" && (
-            <Typography
-              className={styles.tabsContent}
-              variant="p"
-              font="secondaryFont"
-              children={book.desc}
-            />
-          )}
-
+          {/* Icons */}
           <div className={styles.socialIconWrapper}>
             <SlSocialFacebook className={styles.socialIcon} />
             <CiTwitter className={styles.socialIcon} />
