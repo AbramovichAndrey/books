@@ -1,16 +1,16 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import MainComponent from "../components/Main/Main";
 import MainLayout from "../layouts/MainLayout";
+import CartComponent from "../components/Cart/Cart";
 
-const MainPage = () => {
+const Cart = () => {
   return (
     <MainLayout
       header={<Header />}
-      main={<MainComponent />}
+      main={<CartComponent />}
       footer={<Footer />}
     />
   );
 };
 
-export default MainPage;
+export default Cart;

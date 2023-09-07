@@ -11,6 +11,7 @@ import {
 import Main from "../pages/Main";
 import BookDetails from "../pages/BooksDetails";
 import Favorite from "../pages/Favorite";
+import Cart from "../pages/Cart";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Main />} />
       <Route path="/book/:id" element={<BookDetails />} />
       <Route path="/favorites" element={<Favorite />} />
+      <Route path="/cart" element={<Cart />} />
     </>
   )
 );

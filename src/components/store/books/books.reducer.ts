@@ -8,6 +8,8 @@ interface BookState {
   books: IBook[];
 
   favoriteBooks: IBook[];
+  
+  cartBooks: IBook[];
 
   isBookLoading: boolean;
   book: IBookDetails | null;
@@ -18,6 +20,8 @@ const initialState: BookState = {
   books: [],
 
   favoriteBooks: [],
+
+  cartBooks: [],
 
   isBookLoading: false,
   book: null,
@@ -72,6 +76,26 @@ const bookSlice = createSlice({
     setFavorites: (state, action: PayloadAction<IBook[]>) => {
       state.favoriteBooks = action.payload;
     },
+    addBookToCart: (state,action:PayloadAction<IBook>)=>{
+    const cartBookIndex = state.cartBooks.findIndex((b)=>b.isbn13===action.payload.isbn13);
+    if(cartBookIndex ===-1){
+       state.cartBooks.push(action.payload);  
+      }
+      else{
+        return;
+          }
+    },
+    setCart: (state, action: PayloadAction<IBook[]>)=>{
+      state.cartBooks = action.payload
+    },
+    deleteFromCart : (state, action: PayloadAction<IBook>)=>{
+      const cartBookIndex = state.cartBooks.findIndex((b)=>b.isbn13===action.payload.isbn13);
+      if(cartBookIndex!==-1){
+        state.cartBooks.splice(cartBookIndex,1)
+      }
+    },
+
+   
   },
 });
 
@@ -83,6 +107,9 @@ export const {
   deleteBook,
   toggleBookIsFavorite,
   setFavorites,
+  addBookToCart,
+  setCart,
+  deleteFromCart,
 } = bookSlice.actions;
 
 export default bookSlice.reducer;

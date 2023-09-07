@@ -11,21 +11,31 @@
   justify-content: center;
   gap: 20px;
 }
-.img {
-}
+
 .imgWrapper {
   margin-bottom: 30px;
 }
-.heart {
-  color: #fc857f;
-  font-size: 35px;
-}
-.heart:hover {
-  cursor: pointer;
-}
-.heartWrapper {
+
+.closeButton {
   margin-left: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.countWrapper {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+.price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  background-color: transparent;
+  border: none;
+}
+.button:hover {
+  cursor: pointer;
 }

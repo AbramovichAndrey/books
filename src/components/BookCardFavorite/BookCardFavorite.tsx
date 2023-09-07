@@ -5,10 +5,8 @@ import { IBook } from "../../models/book.model";
 import Typography from "../Typography/Typography";
 import BookActions from "../BookAction/BookActions";
 import { AiFillHeart } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { getSlice } from "../store/books/books.selectors";
+import { useDispatch } from "react-redux";
 import { toggleBookIsFavorite } from "../store/books/books.reducer";
-import HeartButton from "../Buttons/HeartButton/HeartButton";
 
 interface ICardProps {
   book: IBook;

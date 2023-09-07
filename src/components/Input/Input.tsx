@@ -59,11 +59,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           <Typography
             font="secondaryFont"
             color="secondary"
-            children={helperText}
             className={clsx(styles.helperText, {
               [styles.helperTextError]: error,
             })}
-          />
+          >
+            {helperText}
+          </Typography>
         )}
       </div>
     );

@@ -1,19 +1,32 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import styles from "./BookDetailsInfo.module.css";
-import { NavLink } from "react-router-dom";
 import BookActions from "../BookAction/BookActions";
 import MainButton from "../Buttons/MainButton/MainButton";
 import Typography from "../Typography/Typography";
 import { IBookDetails } from "../../models/bookDetails.model";
+import { useDispatch, useSelector } from "react-redux";
+import { getSlice } from "../store/books/books.selectors";
+import { addBookToCart } from "../store/books/books.reducer";
 
 interface IBookDetailsInfoProps {
-  book: IBookDetails;
+  iBook: IBookDetails;
 }
 
-const BookDetailsInfo: React.FC<IBookDetailsInfoProps> = ({ book }) => {
+const BookDetailsInfo: React.FC<IBookDetailsInfoProps> = ({ iBook }) => {
+  const { book } = useSelector(getSlice);
+  const dispatch = useDispatch();
+
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+
+    if (book) {
+      dispatch(addBookToCart(book));
+    }
+  };
+
   return (
     <div>
-      <BookActions price={book.price} rating={book.rating} />
+      <BookActions price={iBook.price} rating={iBook.rating} />
       <div>
         <div className={styles.textWrap}>
           <Typography variant="span" font="secondaryFont" color="secondary">
@@ -21,7 +34,7 @@ const BookDetailsInfo: React.FC<IBookDetailsInfoProps> = ({ book }) => {
           </Typography>
 
           <Typography variant="span" font="secondaryFont" color="primary">
-            {book.authors}
+            {iBook.authors}
           </Typography>
         </div>
         <div className={styles.textWrap}>
@@ -30,7 +43,7 @@ const BookDetailsInfo: React.FC<IBookDetailsInfoProps> = ({ book }) => {
           </Typography>
 
           <Typography variant="span" font="secondaryFont" color="primary">
-            {book.publisher}
+            {iBook.publisher}
           </Typography>
         </div>
         <div className={styles.textWrap}>
@@ -52,15 +65,17 @@ const BookDetailsInfo: React.FC<IBookDetailsInfoProps> = ({ book }) => {
           </Typography>
         </div>
 
-        <MainButton className={styles.addBut}>
+        <MainButton className={styles.addBut} onClick={handleClick}>
           <Typography color="secondary"> ADD TO CARD </Typography>
         </MainButton>
 
-        {typeof book.pdf === "object" && Object.keys(book.pdf).length > 0 && (
+        {typeof iBook.pdf === "object" && Object.keys(iBook.pdf).length > 0 && (
           <div className={styles.previewBook}>
-            <a target="_blank" rel="noopener noreferrer"
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
               style={{ textDecoration: "none" }}
-              href={Object.values(book.pdf)[0]}
+              href={Object.values(iBook.pdf)[0]}
             >
               <Typography variant="p" font="secondaryFont">
                 Preview book

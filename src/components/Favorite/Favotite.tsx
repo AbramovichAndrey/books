@@ -25,7 +25,11 @@ const Favorite: React.FC = () => {
   }, []);
 
   if (favoriteBooks.length === 0) {
-    return <Typography>Empty</Typography>;
+    return (
+      <Typography variant="h4" className={styles.haventBooksText}>
+        You don't have favorite books
+      </Typography>
+    );
   }
 
   return (

@@ -1,10 +1,8 @@
-.books {
+.emptyCartText {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
   margin-top: 50px;
+  justify-content: center;
 }
-
 .backButton {
   font-size: 36px;
   background-color: transparent;
@@ -13,9 +11,4 @@
 }
 .backButton:hover {
   cursor: pointer;
-}
-.haventBooksText {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
 }

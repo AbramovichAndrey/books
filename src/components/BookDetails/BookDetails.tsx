@@ -24,7 +24,12 @@ import BookDetailsInfo from "../BookDetailsInfo/BookDetailsInfo";
 
 const BooksDetails: React.FC = () => {
   const { id: bookId } = useParams();
-  const { book, isBookLoading: loading, favoriteBooks } = useSelector(getSlice);
+  const {
+    book,
+    isBookLoading: loading,
+    favoriteBooks,
+    cartBooks,
+  } = useSelector(getSlice);
   const dispatch = useDispatch();
 
   const handleClick = (e: MouseEvent) => {
@@ -33,6 +38,10 @@ const BooksDetails: React.FC = () => {
       dispatch(toggleBookIsFavorite(book));
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartBooks));
+  }, [cartBooks]);
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
@@ -64,16 +73,13 @@ const BooksDetails: React.FC = () => {
                 <BsArrowLeft />
               </button>
             </NavLink>
-            <Typography variant="h1" children={book.title} />
+            <Typography variant="h1"> {book.title}</Typography>
           </div>
           <div className={styles.wrapper}>
             {/* Image */}
             <div>
               <RandomColor className={styles.imgBG}>
-                <img
-                  src={book?.image}
-                  alt={book?.title}
-                />
+                <img src={book?.image} alt={book?.title} />
                 <HeartButtons
                   onClick={handleClick}
                   className={styles.heartButton}
@@ -83,7 +89,7 @@ const BooksDetails: React.FC = () => {
 
             {/* Information  */}
             <div className={styles.infoWrapper}>
-              <BookDetailsInfo book={book} />
+              <BookDetailsInfo iBook={book} />
             </div>
           </div>
 

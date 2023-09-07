@@ -48,7 +48,12 @@ const Header: React.FC = () => {
         >
           <AiOutlineHeart className={styles.icon} />
         </NavLink>
-        <AiOutlineShopping className={styles.icon} />
+        <NavLink
+          style={{ textDecoration: "none", color: "black" }}
+          to={"/cart"}
+        >
+          <AiOutlineShopping className={styles.icon} />
+        </NavLink>
         <AiOutlineUser className={styles.icon} />
       </div>
     </div>
