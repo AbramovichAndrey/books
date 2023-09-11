@@ -8,7 +8,7 @@ interface BookState {
   books: IBook[];
 
   favoriteBooks: IBook[];
-  
+
   cartBooks: IBook[];
 
   isBookLoading: boolean;
@@ -76,26 +76,27 @@ const bookSlice = createSlice({
     setFavorites: (state, action: PayloadAction<IBook[]>) => {
       state.favoriteBooks = action.payload;
     },
-    addBookToCart: (state,action:PayloadAction<IBook>)=>{
-    const cartBookIndex = state.cartBooks.findIndex((b)=>b.isbn13===action.payload.isbn13);
-    if(cartBookIndex ===-1){
-       state.cartBooks.push(action.payload);  
-      }
-      else{
+    addBookToCart: (state, action: PayloadAction<IBook>) => {
+      const cartBookIndex = state.cartBooks.findIndex(
+        (b) => b.isbn13 === action.payload.isbn13
+      );
+      if (cartBookIndex === -1) {
+        state.cartBooks.push(action.payload);
+      } else {
         return;
-          }
-    },
-    setCart: (state, action: PayloadAction<IBook[]>)=>{
-      state.cartBooks = action.payload
-    },
-    deleteFromCart : (state, action: PayloadAction<IBook>)=>{
-      const cartBookIndex = state.cartBooks.findIndex((b)=>b.isbn13===action.payload.isbn13);
-      if(cartBookIndex!==-1){
-        state.cartBooks.splice(cartBookIndex,1)
       }
     },
-
-   
+    setCart: (state, action: PayloadAction<IBook[]>) => {
+      state.cartBooks = action.payload;
+    },
+    deleteFromCart: (state, action: PayloadAction<IBook>) => {
+      const cartBookIndex = state.cartBooks.findIndex(
+        (b) => b.isbn13 === action.payload.isbn13
+      );
+      if (cartBookIndex !== -1) {
+        state.cartBooks.splice(cartBookIndex, 1);
+      }
+    },
   },
 });
 

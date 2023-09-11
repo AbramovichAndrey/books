@@ -21,6 +21,7 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import Subscribe from "../Subscribe/Subscribe";
 import BookDetailsTabs from "../BookDetailsTabs/BookDetailsTabs";
 import BookDetailsInfo from "../BookDetailsInfo/BookDetailsInfo";
+import { useDidUpdate } from "../../hooks/useDidUpdate";
 
 const BooksDetails: React.FC = () => {
   const { id: bookId } = useParams();
@@ -39,12 +40,16 @@ const BooksDetails: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartBooks));
+  useDidUpdate(() => {
+    if (cartBooks.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cartBooks));
+    }
   }, [cartBooks]);
 
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
+  useDidUpdate(() => {
+    if (favoriteBooks.length > 0) {
+      localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
+    }
   }, [favoriteBooks]);
 
   useEffect(() => {

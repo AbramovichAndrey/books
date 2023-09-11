@@ -7,14 +7,16 @@ import Typography from "../Typography/Typography";
 import BookCardFavorite from "../BookCardFavorite/BookCardFavorite";
 import { BsArrowLeft } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
+import { useDidUpdate } from "../../hooks/useDidUpdate";
 
 const Favorite: React.FC = () => {
   const { favoriteBooks } = useSelector(getSlice);
 
   const dispath = useDispatch();
 
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
+  useDidUpdate(() => {
+    if (favoriteBooks.length > 0)
+      localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
   }, [favoriteBooks]);
 
   useEffect(() => {

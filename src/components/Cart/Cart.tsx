@@ -6,15 +6,17 @@ import styles from "./Cart.module.css";
 import Typography from "../Typography/Typography";
 import { NavLink } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
-import BookCardFavorite from "../BookCardFavorite/BookCardFavorite";
 import BookCardCart from "../BookCardCart/BookCardCart";
+import { useDidUpdate } from "../../hooks/useDidUpdate";
 
 const Cart: React.FC = () => {
   const { cartBooks } = useSelector(getSlice);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartBooks));
+  useDidUpdate(() => {
+    if (cartBooks.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cartBooks));
+    }
   }, [cartBooks]);
 
   useEffect(() => {

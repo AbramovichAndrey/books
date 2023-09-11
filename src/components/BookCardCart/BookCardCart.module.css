@@ -15,6 +15,9 @@
 .imgWrapper {
   margin-bottom: 30px;
 }
+.closeButtonL:hover{
+  cursor: pointer;
+}
 
 .closeButton {
   margin-left: 30px;
