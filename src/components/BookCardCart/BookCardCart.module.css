@@ -1,4 +1,5 @@
 .wrapper {
+  margin-top: 30px;
   display: flex;
   justify-content: flex-start;
   gap: 30px;
@@ -15,7 +16,7 @@
 .imgWrapper {
   margin-bottom: 30px;
 }
-.closeButtonL:hover{
+.closeButtonL:hover {
   cursor: pointer;
 }
 

@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { IBook } from "../../models/book.model";
 import RandomColor from "../RandomColor/RandomColor";
 import Typography from "../Typography/Typography";
 import styles from "./BookCardCart.module.css";
-import { deleteFromCart } from "../store/books/books.reducer";
+import {
+  deleteFromCart,
+  incCountBook,
+  decCountBook,
+} from "../store/books/books.reducer";
 import CloseButton from "../Buttons/CloseButton/CloseButton";
 
 interface ICardProps {
@@ -12,12 +16,16 @@ interface ICardProps {
 }
 
 const BookCardCart: React.FC<ICardProps> = ({ book }) => {
-  const [count, setCount] = useState(1);
-
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(deleteFromCart(book));
+  };
+  const incCountClick = () => {
+    dispatch(incCountBook(book));
+  };
+  const decCountClick = () => {
+    dispatch(decCountBook(book));
   };
 
   return (
@@ -39,30 +47,19 @@ const BookCardCart: React.FC<ICardProps> = ({ book }) => {
             {book.subtitle}
           </Typography>
           <div className={styles.countWrapper}>
-            <button
-              className={styles.button}
-              onClick={() => {
-                if (count > 1) setCount(count - 1);
-              }}
-            >
+            <button className={styles.button} onClick={decCountClick}>
               <Typography variant="h5">-</Typography>
             </button>
-            <Typography variant="h5">{count}</Typography>
-            <button
-              className={styles.button}
-              onClick={() => setCount(count + 1)}
-            >
+            <Typography variant="h5">{book.count}</Typography>
+            <button className={styles.button} onClick={incCountClick}>
               <Typography variant="h5">+</Typography>
             </button>
           </div>
         </div>
         <div className={styles.price}>
-          {count === 1 && <Typography variant="h5">{book.price}</Typography>}
-          {count > 1 && (
-            <Typography variant="h5">{`$${
-              count * +book.price.slice(1)
-            }`}</Typography>
-          )}
+          <Typography variant="h5">{`$${(
+            +book.price.slice(1) * book.count
+          ).toFixed(2)}`}</Typography>
         </div>
         <div className={styles.closeButton}>
           <CloseButton onClick={handleClick} />

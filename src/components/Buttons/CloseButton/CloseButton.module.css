@@ -11,4 +11,5 @@
 }
 .icon:hover {
   color: #fc857f;
+  cursor: pointer;
 }

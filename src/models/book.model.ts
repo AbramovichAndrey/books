@@ -5,5 +5,5 @@ export interface IBook{
     price: string,
     image: string,
     url: string,
-    count : number,
+    count: number,
 }

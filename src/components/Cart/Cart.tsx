@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import BookCardCart from "../BookCardCart/BookCardCart";
 import { useDidUpdate } from "../../hooks/useDidUpdate";
+import TotalOrder from "../TotalOrder/TotalOrder";
 
 const Cart: React.FC = () => {
   const { cartBooks } = useSelector(getSlice);
@@ -33,6 +34,10 @@ const Cart: React.FC = () => {
       </Typography>
     );
   }
+  const total = cartBooks.reduce((acc, book) => {
+    const bookPrice = +book.price.slice(1);
+    return acc + book.count * bookPrice;
+  }, 0);
 
   return (
     <>
@@ -51,6 +56,8 @@ const Cart: React.FC = () => {
           </li>
         ))}
       </ul>
+
+      <TotalOrder total={total} />
     </>
   );
 };
