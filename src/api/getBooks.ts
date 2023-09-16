@@ -7,8 +7,8 @@ type GetBooksSuccessResponse = {
   books: IBook[];
 };
 
-export const getBooks = (searchValue: string) => {
+export const getBooks = (searchValue: string): Promise<GetBooksSuccessResponse> => {
   return axios
     .get(`https://api.itbook.store/1.0/search/${searchValue}`)
-    .then((res) => res.data as GetBooksSuccessResponse);
+    .then((res) => res.data);
 };

@@ -12,3 +12,7 @@
 .title {
   margin: 30px 0 18px 0;
 }
+.notFound {
+  display: flex;
+  justify-content: center;
+}

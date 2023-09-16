@@ -6,8 +6,8 @@ type GetBooksSuccessResponse = {
   books: IBook[];
 };
 
-export const getNewBooks = () => {
+export const getNewBooks = (): Promise<GetBooksSuccessResponse> => {
   return axios
     .get("https://api.itbook.store/1.0/new")
-    .then((res) => res.data as GetBooksSuccessResponse);
+    .then((res) => res.data );
 };

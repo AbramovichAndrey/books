@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import styles from "./Header.module.css";
+
 import Typography from "../Typography/Typography";
 import Input from "../Input/Input";
 import {
@@ -9,22 +10,41 @@ import {
   AiOutlineSearch,
 } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
-
-const initialValue = {
-  search: "",
-};
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../store";
+import { getBooksBySearch } from "../store/books/books.actions";
+import { getSlice } from "../store/books/books.selectors";
+import { setSearch } from "../store/books/books.reducer";
+import debounce from "lodash.debounce";
+import { useDidUpdate } from "../../hooks/useDidUpdate";
 
 const Header: React.FC = () => {
-  const [search, setSearch] = useState(initialValue);
+  const { search } = useSelector(getSlice);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }, []);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearch(e.target.value));
+  };
+
+  const debouncedSetSearch = useCallback(
+    debounce((newSearch: string) => {
+      dispatch(getBooksBySearch(newSearch));
+    }, 300),
+    [dispatch]
+  );
+
+  useDidUpdate(() => {
+    if (search != "") debouncedSetSearch(search);
+  }, [debouncedSetSearch, search]);
 
   return (
     <div className={styles.wrapper}>
       <div>
-        <NavLink style={{ textDecoration: "none" }} to={"/"}>
+        <NavLink
+          onClick={() => dispatch(setSearch(""))}
+          style={{ textDecoration: "none" }}
+          to={"/"}
+        >
           <Typography variant={"h1"}>BOOKSTORE</Typography>
         </NavLink>
       </div>
@@ -33,7 +53,7 @@ const Header: React.FC = () => {
           type="text"
           className={styles.input}
           placeholder="Search"
-          value={search.search}
+          value={search}
           onChange={handleChange}
           name={"search"}
         />

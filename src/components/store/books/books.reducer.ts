@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { count } from "console";
-import { stat } from "fs";
 
 import { IBook } from "../../../models/book.model";
 import { IBookDetails } from "../../../models/bookDetails.model";
+import { getNewBooksThunk,getBookThunk, getBooksBySearch } from "./books.actions";
 
 interface BookState {
   isBooksLoading: boolean;
@@ -15,6 +14,10 @@ interface BookState {
 
   isBookLoading: boolean;
   book: IBookDetails | null;
+
+  search: string;
+  searchBooks: IBook[];
+  isSearchLoading: boolean;
 }
 
 const initialState: BookState = {
@@ -27,24 +30,16 @@ const initialState: BookState = {
 
   isBookLoading: false,
   book: null,
+
+  search: "",
+  searchBooks: [],
+  isSearchLoading: false,
 };
 
 const bookSlice = createSlice({
   name: "books",
   initialState,
   reducers: {
-    setIsBooksLoading: (state, action: PayloadAction<boolean>) => {
-      state.isBooksLoading = action.payload;
-    },
-    setBooks: (state, action: PayloadAction<IBook[]>) => {
-      state.books = action.payload;
-    },
-    setIsBookLoading: (state, action: PayloadAction<boolean>) => {
-      state.isBookLoading = action.payload;
-    },
-    setBook: (state, action: PayloadAction<IBookDetails>) => {
-      state.book = action.payload;
-    },
     deleteBook: (state) => {
       state.book = initialState.book;
     },
@@ -103,14 +98,45 @@ const bookSlice = createSlice({
         state.cartBooks.splice(cartBookIndex, 1);
       }
     },
+    setSearch: (state,action: PayloadAction<string>)=>{
+      state.search = action.payload
+    }
+  },
+
+
+  extraReducers(builder) {
+
+    builder.addCase(getNewBooksThunk.pending,(state)=>{
+      state.isBooksLoading=true;
+    })
+
+    builder.addCase(getNewBooksThunk.fulfilled,(state,action)=>{
+      state.isBooksLoading = false;
+      state.books = action.payload.books
+    })
+
+    builder.addCase(getBookThunk.pending,(state)=>{
+      state.isBookLoading = true;
+    })
+
+    builder.addCase(getBookThunk.fulfilled,(state,action)=>{
+      state.isBookLoading = false;
+      state.book=action.payload;
+    })
+
+    builder.addCase(getBooksBySearch.pending,(state)=>{
+      state.isSearchLoading = true;
+    })
+    
+    builder.addCase(getBooksBySearch.fulfilled,(state,action)=>{
+      state.isSearchLoading = false;
+      state.searchBooks = action.payload.books;
+      console.log(action.payload)
+    })
   },
 });
 
 export const {
-  setIsBooksLoading,
-  setBooks,
-  setIsBookLoading,
-  setBook,
   deleteBook,
   toggleBookIsFavorite,
   setFavorites,
@@ -119,6 +145,7 @@ export const {
   deleteFromCart,
   incCountBook,
   decCountBook,
+  setSearch,
 } = bookSlice.actions;
 
 export default bookSlice.reducer;

@@ -4,13 +4,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getSlice } from "../store/books/books.selectors";
-import {
-  setBook,
-  setIsBookLoading,
-  deleteBook,
-  toggleBookIsFavorite,
-} from "../store/books/books.reducer";
-import { getBook } from "../../api/getBook";
+import { deleteBook, toggleBookIsFavorite } from "../store/books/books.reducer";
 import RandomColor from "../RandomColor/RandomColor";
 import HeartButtons from "../Buttons/HeartButton/HeartButton";
 import { NavLink } from "react-router-dom";
@@ -22,6 +16,8 @@ import Subscribe from "../Subscribe/Subscribe";
 import BookDetailsTabs from "../BookDetailsTabs/BookDetailsTabs";
 import BookDetailsInfo from "../BookDetailsInfo/BookDetailsInfo";
 import { useDidUpdate } from "../../hooks/useDidUpdate";
+import { AppDispatch } from "../store";
+import { getBookThunk } from "../store/books/books.actions";
 
 const BooksDetails: React.FC = () => {
   const { id: bookId } = useParams();
@@ -31,7 +27,7 @@ const BooksDetails: React.FC = () => {
     favoriteBooks,
     cartBooks,
   } = useSelector(getSlice);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
@@ -55,10 +51,7 @@ const BooksDetails: React.FC = () => {
   useEffect(() => {
     if (!bookId) return;
 
-    dispatch(setIsBookLoading(true));
-    getBook({ id: bookId })
-      .then((data) => dispatch(setBook(data)))
-      .finally(() => dispatch(setIsBookLoading(false)));
+    dispatch(getBookThunk(bookId));
     window.scrollTo(0, 0);
 
     return () => {
@@ -68,7 +61,7 @@ const BooksDetails: React.FC = () => {
 
   return (
     <div>
-      {loading && "Loading"}
+      {loading && <Typography>Loading</Typography>}
 
       {book && (
         <>
