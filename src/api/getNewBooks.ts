@@ -3,12 +3,11 @@ import { IBook } from "../models/book.model";
 
 type GetBooksSuccessResponse = {
   total: string;
-  page: number;
   books: IBook[];
 };
 
-export const getBooks = (searchValue: string) => {
+export const getNewBooks = () => {
   return axios
-    .get(`https://api.itbook.store/1.0/search/${searchValue}`)
+    .get("https://api.itbook.store/1.0/new")
     .then((res) => res.data as GetBooksSuccessResponse);
 };

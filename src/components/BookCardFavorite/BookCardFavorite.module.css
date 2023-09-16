@@ -1,4 +1,5 @@
 .wrapper {
+    margin-top: 30px;
   display: flex;
   justify-content: flex-start;
   gap: 30px;
@@ -11,8 +12,7 @@
   justify-content: center;
   gap: 20px;
 }
-.img {
-}
+
 .imgWrapper {
   margin-bottom: 30px;
 }

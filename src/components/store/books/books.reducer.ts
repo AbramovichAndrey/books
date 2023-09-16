@@ -57,22 +57,6 @@ const bookSlice = createSlice({
       } else {
         state.favoriteBooks.splice(favoriteBookIndex, 1);
       }
-
-      // if (book) {
-      //   // Check if the book is already a favorite
-      //   const isFavorite = state.favoriteBooks.some(
-      //     (favoriteBook) => favoriteBook.isbn13 === action.payload
-      //   );
-
-      //   if (isFavorite) {
-      //     // If it's a favorite, remove it from the favorites list
-      //     state.favoriteBooks = state.favoriteBooks.filter(
-      //       (favoriteBook) => favoriteBook.isbn13 !== action.payload
-      //     );
-      //   } else {
-      //     // If it's not a favorite, add it to the favorites list
-      //     state.favoriteBooks.push(book);
-      //   }
     },
 
     setFavorites: (state, action: PayloadAction<IBook[]>) => {
@@ -89,22 +73,27 @@ const bookSlice = createSlice({
       }
     },
     setCart: (state, action: PayloadAction<IBook[]>) => {
-      state.cartBooks = action.payload.map((cartBooks)=>({...cartBooks,count:1}))
-    
+      state.cartBooks = action.payload.map((cartBooks) => ({
+        ...cartBooks,
+        count: 1,
+      }));
     },
-incCountBook: (state,action: PayloadAction<IBook>)=>{
-const book = state.cartBooks.find((b)=>b.isbn13 === action.payload.isbn13)
-if(book){
-  book.count+=1;
-}
-},
-decCountBook: (state,action:PayloadAction<IBook>)=>{
-  const book = state.cartBooks.find((b)=>b.isbn13 === action.payload.isbn13)
-  if(book){
-    if(book.count>1)
-    book.count-=1;
-  }
-},
+    incCountBook: (state, action: PayloadAction<IBook>) => {
+      const book = state.cartBooks.find(
+        (b) => b.isbn13 === action.payload.isbn13
+      );
+      if (book) {
+        book.count += 1;
+      }
+    },
+    decCountBook: (state, action: PayloadAction<IBook>) => {
+      const book = state.cartBooks.find(
+        (b) => b.isbn13 === action.payload.isbn13
+      );
+      if (book) {
+        if (book.count > 1) book.count -= 1;
+      }
+    },
 
     deleteFromCart: (state, action: PayloadAction<IBook>) => {
       const cartBookIndex = state.cartBooks.findIndex(
