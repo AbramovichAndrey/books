@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
 import styles from "./Main.module.css";
-import { getSlice } from "../store/books/books.selectors";
+import { getSlice } from "../../store/books/books.selectors";
 import { useSelector, useDispatch } from "react-redux";
 import ListOfBook from "../ListOfBook/ListOfBook";
 import Subscribe from "../Subscribe/Subscribe";
 import Typography from "../Typography/Typography";
-import { getNewBooksThunk } from "../store/books/books.actions";
-import { AppDispatch } from "../store";
+import { getNewBooksThunk } from "../../store/books/books.actions";
+import { AppDispatch } from "../../store";
+import Pagination from "../Pagination/Pagination";
 
 const Main: React.FC = () => {
   const {
     books,
     search,
     searchBooks,
+    total,
     isBooksLoading: loading,
     isSearchLoading: searchLoading,
   } = useSelector(getSlice);
@@ -29,6 +31,7 @@ const Main: React.FC = () => {
           <div className={styles.title}>
             <Typography variant="h1">NEW RELEASES BOOKS</Typography>
           </div>
+          
           <div className={styles.books}>
             {loading && <Typography>Loading</Typography>}
             {!loading && books.length > 0 && <ListOfBook books={books} />}
@@ -50,10 +53,13 @@ const Main: React.FC = () => {
                   font="secondaryFont"
                   color="secondary"
                 >
-                  {`found ${searchBooks.length} books`}
+                  {`found ${total} books`}
                 </Typography>
               </div>
               <ListOfBook books={searchBooks} />
+              <div>
+                <Pagination total={15} />
+              </div>
             </>
           )}
           {!searchLoading && searchBooks.length === 0 && (

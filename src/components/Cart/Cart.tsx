@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSlice } from "../store/books/books.selectors";
-import { setCart } from "../store/books/books.reducer";
+import { getSlice } from "../../store/books/books.selectors";
+import { setCart } from "../../store/books/books.reducer";
 import styles from "./Cart.module.css";
 import Typography from "../Typography/Typography";
 import { NavLink } from "react-router-dom";
@@ -14,18 +14,8 @@ const Cart: React.FC = () => {
   const { cartBooks } = useSelector(getSlice);
   const dispatch = useDispatch();
 
-  useDidUpdate(() => {
-    if (cartBooks.length > 0) {
-      localStorage.setItem("cart", JSON.stringify(cartBooks));
-    }
-  }, [cartBooks]);
 
-  useEffect(() => {
-    const cartLocalStorage = localStorage.getItem("cart");
-    if (cartLocalStorage) {
-      dispatch(setCart(JSON.parse(cartLocalStorage)));
-    }
-  }, []);
+  
 
   if (cartBooks.length === 0) {
     return (

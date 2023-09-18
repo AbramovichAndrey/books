@@ -11,10 +11,10 @@ import {
 } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../store";
-import { getBooksBySearch } from "../store/books/books.actions";
-import { getSlice } from "../store/books/books.selectors";
-import { setSearch } from "../store/books/books.reducer";
+import { AppDispatch } from "../../store";
+import { getBooksBySearch } from "../../store/books/books.actions";
+import { getSlice } from "../../store/books/books.selectors";
+import { setSearch } from "../../store/books/books.reducer";
 import debounce from "lodash.debounce";
 import { useDidUpdate } from "../../hooks/useDidUpdate";
 
@@ -27,14 +27,14 @@ const Header: React.FC = () => {
   };
 
   const debouncedSetSearch = useCallback(
-    debounce((newSearch: string) => {
-      dispatch(getBooksBySearch(newSearch));
+    debounce((searchValue: string, page: string) => {
+      dispatch(getBooksBySearch({ searchValue, page }));
     }, 300),
     [dispatch]
   );
 
   useDidUpdate(() => {
-    if (search != "") debouncedSetSearch(search);
+    if (search !== "") debouncedSetSearch(search, "1");
   }, [debouncedSetSearch, search]);
 
   return (

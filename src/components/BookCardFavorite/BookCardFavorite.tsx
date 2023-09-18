@@ -6,7 +6,7 @@ import Typography from "../Typography/Typography";
 import BookActions from "../BookAction/BookActions";
 import { AiFillHeart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { toggleBookIsFavorite } from "../store/books/books.reducer";
+import { toggleBookIsFavorite } from "../../store/books/books.reducer";
 
 interface ICardProps {
   book: IBook;

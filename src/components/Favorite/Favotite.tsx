@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import styles from "./Favorite.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getSlice } from "../store/books/books.selectors";
-import { setFavorites } from "../store/books/books.reducer";
+import { getSlice } from "../../store/books/books.selectors";
+import { setFavorites } from "../../store/books/books.reducer";
 import Typography from "../Typography/Typography";
 import BookCardFavorite from "../BookCardFavorite/BookCardFavorite";
 import { BsArrowLeft } from "react-icons/bs";
@@ -14,17 +14,9 @@ const Favorite: React.FC = () => {
 
   const dispath = useDispatch();
 
-  useDidUpdate(() => {
-    if (favoriteBooks.length > 0)
-      localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
-  }, [favoriteBooks]);
 
-  useEffect(() => {
-    const favBLocalStorage = localStorage.getItem("favorites");
-    if (favBLocalStorage) {
-      dispath(setFavorites(JSON.parse(favBLocalStorage)));
-    }
-  }, []);
+
+ 
 
   if (favoriteBooks.length === 0) {
     return (

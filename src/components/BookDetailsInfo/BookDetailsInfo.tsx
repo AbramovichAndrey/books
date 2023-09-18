@@ -5,8 +5,8 @@ import MainButton from "../Buttons/MainButton/MainButton";
 import Typography from "../Typography/Typography";
 import { IBookDetails } from "../../models/bookDetails.model";
 import { useDispatch, useSelector } from "react-redux";
-import { getSlice } from "../store/books/books.selectors";
-import { addBookToCart } from "../store/books/books.reducer";
+import { getSlice } from "../../store/books/books.selectors";
+import { addBookToCart } from "../../store/books/books.reducer";
 
 interface IBookDetailsInfoProps {
   iBook: IBookDetails;

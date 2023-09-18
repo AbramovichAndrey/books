@@ -8,7 +8,7 @@ import {
   deleteFromCart,
   incCountBook,
   decCountBook,
-} from "../store/books/books.reducer";
+} from "../../store/books/books.reducer";
 import CloseButton from "../Buttons/CloseButton/CloseButton";
 
 interface ICardProps {

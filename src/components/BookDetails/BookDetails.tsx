@@ -3,8 +3,11 @@ import styles from "./BookDetails.module.css";
 import { BsArrowLeft } from "react-icons/bs";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { getSlice } from "../store/books/books.selectors";
-import { deleteBook, toggleBookIsFavorite } from "../store/books/books.reducer";
+import { getSlice } from "../../store/books/books.selectors";
+import {
+  deleteBook,
+  toggleBookIsFavorite,
+} from "../../store/books/books.reducer";
 import RandomColor from "../RandomColor/RandomColor";
 import HeartButtons from "../Buttons/HeartButton/HeartButton";
 import { NavLink } from "react-router-dom";
@@ -16,8 +19,8 @@ import Subscribe from "../Subscribe/Subscribe";
 import BookDetailsTabs from "../BookDetailsTabs/BookDetailsTabs";
 import BookDetailsInfo from "../BookDetailsInfo/BookDetailsInfo";
 import { useDidUpdate } from "../../hooks/useDidUpdate";
-import { AppDispatch } from "../store";
-import { getBookThunk } from "../store/books/books.actions";
+import { AppDispatch } from "../../store";
+import { getBookThunk } from "../../store/books/books.actions";
 
 const BooksDetails: React.FC = () => {
   const { id: bookId } = useParams();
@@ -36,17 +39,7 @@ const BooksDetails: React.FC = () => {
     }
   };
 
-  useDidUpdate(() => {
-    if (cartBooks.length > 0) {
-      localStorage.setItem("cart", JSON.stringify(cartBooks));
-    }
-  }, [cartBooks]);
 
-  useDidUpdate(() => {
-    if (favoriteBooks.length > 0) {
-      localStorage.setItem("favorites", JSON.stringify(favoriteBooks));
-    }
-  }, [favoriteBooks]);
 
   useEffect(() => {
     if (!bookId) return;

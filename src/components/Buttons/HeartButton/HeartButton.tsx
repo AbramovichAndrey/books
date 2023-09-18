@@ -3,7 +3,7 @@ import styles from "./HeartButton.module.css";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
-import { getSlice } from "../../store/books/books.selectors";
+import { getSlice } from "../../../store/books/books.selectors";
 
 interface IHeartButtonsProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

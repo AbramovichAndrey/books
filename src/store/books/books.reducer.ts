@@ -1,8 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IBook } from "../../../models/book.model";
-import { IBookDetails } from "../../../models/bookDetails.model";
-import { getNewBooksThunk,getBookThunk, getBooksBySearch } from "./books.actions";
+import { IBook } from "../../models/book.model";
+import { IBookDetails } from "../../models/bookDetails.model";
+import {
+  getNewBooksThunk,
+  getBookThunk,
+  getBooksBySearch,
+} from "./books.actions";
 
 interface BookState {
   isBooksLoading: boolean;
@@ -15,6 +19,7 @@ interface BookState {
   isBookLoading: boolean;
   book: IBookDetails | null;
 
+  total: string;
   search: string;
   searchBooks: IBook[];
   isSearchLoading: boolean;
@@ -31,6 +36,7 @@ const initialState: BookState = {
   isBookLoading: false,
   book: null,
 
+  total:"",
   search: "",
   searchBooks: [],
   isSearchLoading: false,
@@ -98,41 +104,40 @@ const bookSlice = createSlice({
         state.cartBooks.splice(cartBookIndex, 1);
       }
     },
-    setSearch: (state,action: PayloadAction<string>)=>{
-      state.search = action.payload
-    }
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.search = action.payload;
+      
+    },
   },
 
-
   extraReducers(builder) {
+    builder.addCase(getNewBooksThunk.pending, (state) => {
+      state.isBooksLoading = true;
+    });
 
-    builder.addCase(getNewBooksThunk.pending,(state)=>{
-      state.isBooksLoading=true;
-    })
-
-    builder.addCase(getNewBooksThunk.fulfilled,(state,action)=>{
+    builder.addCase(getNewBooksThunk.fulfilled, (state, action) => {
       state.isBooksLoading = false;
-      state.books = action.payload.books
-    })
+      state.books = action.payload.books;
+    });
 
-    builder.addCase(getBookThunk.pending,(state)=>{
+    builder.addCase(getBookThunk.pending, (state) => {
       state.isBookLoading = true;
-    })
+    });
 
-    builder.addCase(getBookThunk.fulfilled,(state,action)=>{
+    builder.addCase(getBookThunk.fulfilled, (state, action) => {
       state.isBookLoading = false;
-      state.book=action.payload;
-    })
+      state.book = action.payload;
+    });
 
-    builder.addCase(getBooksBySearch.pending,(state)=>{
+    builder.addCase(getBooksBySearch.pending, (state) => {
       state.isSearchLoading = true;
-    })
-    
-    builder.addCase(getBooksBySearch.fulfilled,(state,action)=>{
+    });
+
+    builder.addCase(getBooksBySearch.fulfilled, (state, action) => {
       state.isSearchLoading = false;
       state.searchBooks = action.payload.books;
-      console.log(action.payload)
-    })
+      state.total = action.payload.total;
+    });
   },
 });
 
