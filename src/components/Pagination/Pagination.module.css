@@ -1,6 +1,7 @@
 .buttons {
   border: none;
   font-size: 18px;
+  background-color: transparent;
 }
 .buttons:hover {
   cursor: pointer;
@@ -19,4 +20,9 @@
 }
 .nextAndPrevBut:hover {
   cursor: pointer;
+}
+.numbersContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 }

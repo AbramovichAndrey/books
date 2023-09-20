@@ -5,9 +5,14 @@ import { useSelector, useDispatch } from "react-redux";
 import ListOfBook from "../ListOfBook/ListOfBook";
 import Subscribe from "../Subscribe/Subscribe";
 import Typography from "../Typography/Typography";
-import { getNewBooksThunk } from "../../store/books/books.actions";
+import {
+  getBooksBySearch,
+  getNewBooksThunk,
+} from "../../store/books/books.actions";
 import { AppDispatch } from "../../store";
 import Pagination from "../Pagination/Pagination";
+import { setActivePage } from "../../store/books/books.reducer";
+import Loading from "../Loading/Loading";
 
 const Main: React.FC = () => {
   const {
@@ -17,12 +22,23 @@ const Main: React.FC = () => {
     total,
     isBooksLoading: loading,
     isSearchLoading: searchLoading,
+    activePage,
   } = useSelector(getSlice);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getNewBooksThunk());
   }, [dispatch]);
+
+  const handlePaginationClick = (page: number) => {
+    dispatch(setActivePage(page));
+  };
+
+  useEffect(() => {
+    dispatch(
+      getBooksBySearch({ searchValue: search, page: String(activePage) })
+    );
+  }, [activePage]);
 
   return (
     <>
@@ -31,9 +47,9 @@ const Main: React.FC = () => {
           <div className={styles.title}>
             <Typography variant="h1">NEW RELEASES BOOKS</Typography>
           </div>
-          
+
           <div className={styles.books}>
-            {loading && <Typography>Loading</Typography>}
+            {loading && <Loading />}
             {!loading && books.length > 0 && <ListOfBook books={books} />}
           </div>
           <div className={styles.subscribeWrapper}>
@@ -43,7 +59,7 @@ const Main: React.FC = () => {
       )}
       {search != "" && (
         <div>
-          {searchLoading && <Typography>Loading</Typography>}
+          {searchLoading && <Loading />}
           {!searchLoading && searchBooks.length > 0 && (
             <>
               <div className={styles.title}>
@@ -57,8 +73,11 @@ const Main: React.FC = () => {
                 </Typography>
               </div>
               <ListOfBook books={searchBooks} />
-              <div>
-                <Pagination total={15} />
+              <div className={styles.pagination}>
+                <Pagination
+                  onClick={handlePaginationClick}
+                  total={Math.ceil(+total / 10)}
+                />
               </div>
             </>
           )}

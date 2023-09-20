@@ -23,6 +23,8 @@ interface BookState {
   search: string;
   searchBooks: IBook[];
   isSearchLoading: boolean;
+
+  activePage: number;
 }
 
 const initialState: BookState = {
@@ -36,10 +38,12 @@ const initialState: BookState = {
   isBookLoading: false,
   book: null,
 
-  total:"",
+  total: "",
   search: "",
   searchBooks: [],
   isSearchLoading: false,
+
+  activePage: 1,
 };
 
 const bookSlice = createSlice({
@@ -68,16 +72,13 @@ const bookSlice = createSlice({
         (b) => b.isbn13 === action.payload.isbn13
       );
       if (cartBookIndex === -1) {
-        state.cartBooks.push(action.payload);
+        state.cartBooks.push({ ...action.payload, count: 1 });
       } else {
         return;
       }
     },
     setCart: (state, action: PayloadAction<IBook[]>) => {
-      state.cartBooks = action.payload.map((cartBooks) => ({
-        ...cartBooks,
-        count: 1,
-      }));
+      state.cartBooks = action.payload;
     },
     incCountBook: (state, action: PayloadAction<IBook>) => {
       const book = state.cartBooks.find(
@@ -106,7 +107,9 @@ const bookSlice = createSlice({
     },
     setSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload;
-      
+    },
+    setActivePage: (state, action: PayloadAction<number>) => {
+      state.activePage = action.payload;
     },
   },
 
@@ -151,6 +154,7 @@ export const {
   incCountBook,
   decCountBook,
   setSearch,
+  setActivePage,
 } = bookSlice.actions;
 
 export default bookSlice.reducer;

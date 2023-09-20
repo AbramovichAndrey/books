@@ -1,21 +1,15 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { getSlice } from "../../store/books/books.selectors";
-import { setCart } from "../../store/books/books.reducer";
 import styles from "./Cart.module.css";
 import Typography from "../Typography/Typography";
 import { NavLink } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import BookCardCart from "../BookCardCart/BookCardCart";
-import { useDidUpdate } from "../../hooks/useDidUpdate";
 import TotalOrder from "../TotalOrder/TotalOrder";
 
 const Cart: React.FC = () => {
   const { cartBooks } = useSelector(getSlice);
-  const dispatch = useDispatch();
-
-
-  
 
   if (cartBooks.length === 0) {
     return (

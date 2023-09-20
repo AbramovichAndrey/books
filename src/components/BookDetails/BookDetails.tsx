@@ -18,18 +18,13 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import Subscribe from "../Subscribe/Subscribe";
 import BookDetailsTabs from "../BookDetailsTabs/BookDetailsTabs";
 import BookDetailsInfo from "../BookDetailsInfo/BookDetailsInfo";
-import { useDidUpdate } from "../../hooks/useDidUpdate";
 import { AppDispatch } from "../../store";
 import { getBookThunk } from "../../store/books/books.actions";
+import Loading from "../Loading/Loading";
 
 const BooksDetails: React.FC = () => {
   const { id: bookId } = useParams();
-  const {
-    book,
-    isBookLoading: loading,
-    favoriteBooks,
-    cartBooks,
-  } = useSelector(getSlice);
+  const { book, isBookLoading: loading } = useSelector(getSlice);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleClick = (e: MouseEvent) => {
@@ -38,8 +33,6 @@ const BooksDetails: React.FC = () => {
       dispatch(toggleBookIsFavorite(book));
     }
   };
-
-
 
   useEffect(() => {
     if (!bookId) return;
@@ -54,7 +47,7 @@ const BooksDetails: React.FC = () => {
 
   return (
     <div>
-      {loading && <Typography>Loading</Typography>}
+      {loading && <Loading />}
 
       {book && (
         <>

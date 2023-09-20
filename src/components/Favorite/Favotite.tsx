@@ -14,10 +14,6 @@ const Favorite: React.FC = () => {
 
   const dispath = useDispatch();
 
-
-
- 
-
   if (favoriteBooks.length === 0) {
     return (
       <Typography variant="h4" className={styles.haventBooksText}>
@@ -39,8 +35,14 @@ const Favorite: React.FC = () => {
       <ul className={styles.books}>
         {favoriteBooks.map((book) => (
           <li className={styles.book} key={book.isbn13}>
-            <BookCardFavorite book={book} />
+            <NavLink
+              style={{ textDecoration: "none", color: "black" }}
+              to={`/book/${book.isbn13}`}
+            >
+              <BookCardFavorite book={book} />
+            </NavLink>
           </li>
+          // </NavLink>
         ))}
       </ul>
     </>

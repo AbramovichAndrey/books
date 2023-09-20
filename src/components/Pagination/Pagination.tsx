@@ -3,8 +3,9 @@ import styles from "./Pagination.module.css";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { getSlice } from "../../store/books/books.selectors";
-import { getBooksBySearch } from "../../store/books/books.actions";
 import { AppDispatch } from "../../store";
+import { setActivePage } from "../../store/books/books.reducer";
+import clsx from "clsx";
 
 interface PaginationProps {
   page?: number;
@@ -29,8 +30,7 @@ const generatePagination = (page: number, total: number) => {
 };
 
 const Pagination: React.FC<PaginationProps> = ({ page, total, onClick }) => {
-  const [activePage, setActivePage] = useState(page ?? 1);
-  const { search } = useSelector(getSlice);
+  const { activePage } = useSelector(getSlice);
   const dispatch = useDispatch<AppDispatch>();
 
   const pagination = generatePagination(activePage, total);
@@ -39,14 +39,14 @@ const Pagination: React.FC<PaginationProps> = ({ page, total, onClick }) => {
     if (activePage === total) {
       return;
     } else {
-      setActivePage(activePage + 1);
+      dispatch(setActivePage(activePage + 1));
     }
   };
   const decActivePage = () => {
     if (activePage === 1) {
       return;
     } else {
-      setActivePage(activePage - 1);
+      dispatch(setActivePage(activePage - 1));
     }
   };
 
@@ -57,24 +57,25 @@ const Pagination: React.FC<PaginationProps> = ({ page, total, onClick }) => {
           <GrFormPrevious />
         </button>
       </div>
-      {pagination.map((item, index) => (
-        <React.Fragment key={index}>
-          {typeof item === "number" ? (
-            <button
-              className={styles.buttons}
-              style={{ backgroundColor: item === activePage ? "red" : "white" }}
-              onClick={() => {
-                dispatch(getBooksBySearch({searchValue: search, page: String(item)}));
-                setActivePage(item);
-              }}
-            >
-              {item}
-            </button>
-          ) : (
-            <span>{item}</span>
-          )}
-        </React.Fragment>
-      ))}
+      <div className={styles.numbersContainer}>
+        {pagination.map((item, index) => (
+          <React.Fragment key={index}>
+            {typeof item === "number" ? (
+              <button
+                className={styles.buttons}
+                style={{ color: item === activePage ? "black" : "#a8a8a8" }}
+                onClick={() => {
+                  onClick?.(item);
+                }}
+              >
+                {item}
+              </button>
+            ) : (
+              <span>{item}</span>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
       <div>
         <button className={styles.nextAndPrevBut} onClick={incActivePage}>
           <GrFormNext />
