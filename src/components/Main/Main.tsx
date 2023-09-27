@@ -52,9 +52,9 @@ const Main: React.FC = () => {
             {loading && <Loading />}
             {!loading && books.length > 0 && <ListOfBook books={books} />}
           </div>
-          <div className={styles.subscribeWrapper}>
+          {/* <div className={styles.subscribeWrapper}>
             <Subscribe />
-          </div>
+          </div> */}
         </div>
       )}
       {search != "" && (

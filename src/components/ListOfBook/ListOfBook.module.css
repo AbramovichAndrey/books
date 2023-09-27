@@ -23,3 +23,10 @@
   flex-direction: column;
   height: 100%;
 }
+
+@media screen and (max-width: 1120px) {
+  .book {
+    /* margin-left: 52px; */
+    flex: 0 0 calc(100% / 2 - 24px);
+  }
+}

@@ -1,5 +1,4 @@
 .wrapper {
-  width: 1120px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,4 +38,36 @@
 }
 .icon:hover {
   cursor: pointer;
+}
+.burgerButton {
+  display: none;
+  font-size: 22px;
+}
+.burgerMenuWrapper {
+  background-color: white;
+  right: 10px;
+  top: 70px;
+  position: absolute;
+}
+.burgerItem {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 5px;
+}
+
+@media screen and (max-width: 1120px) {
+  .burgerButton {
+    display: block;
+  }
+  .input {
+    width: 300px;
+  }
+  .favBut {
+    display: none;
+  }
+  .userBut {
+    display: none;
+  }
 }
