@@ -14,7 +14,6 @@ const tabs: Tab[] = [
     value: "description",
   },
   { label: "Authors", value: "authors" },
-  { label: "Reviews", value: "reviews" },
 ];
 
 const BookDetailsTabs: React.FC<ITabsProps> = ({ book }) => {
@@ -32,7 +31,7 @@ const BookDetailsTabs: React.FC<ITabsProps> = ({ book }) => {
         tabs={tabs}
         onTabClick={handleChangeTab}
       />
-      
+
       {activeTab === "description" && (
         <Typography
           className={styles.tabsContent}
@@ -50,16 +49,6 @@ const BookDetailsTabs: React.FC<ITabsProps> = ({ book }) => {
           font="secondaryFont"
         >
           {book.authors}
-        </Typography>
-      )}
-
-      {activeTab === "reviews" && (
-        <Typography
-          className={styles.tabsContent}
-          variant="p"
-          font="secondaryFont"
-        >
-          {book.desc}
         </Typography>
       )}
     </div>

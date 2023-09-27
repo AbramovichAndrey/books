@@ -54,16 +54,22 @@ const BooksDetails: React.FC = () => {
           <div>
             <NavLink to={"/"}>
               <button className={styles.backButton}>
-                <BsArrowLeft />
+                <BsArrowLeft style={{ color: "black" }} />
               </button>
             </NavLink>
-            <Typography variant="h1"> {book.title}</Typography>
+            <Typography className={styles.title} variant="h1">
+              {book.title}
+            </Typography>
           </div>
           <div className={styles.wrapper}>
             {/* Image */}
             <div>
               <RandomColor className={styles.imgBG}>
-                <img src={book?.image} alt={book?.title} />
+                <img
+                  className={styles.img}
+                  src={book?.image}
+                  alt={book?.title}
+                />
                 <HeartButtons
                   onClick={handleClick}
                   className={styles.heartButton}

@@ -62,7 +62,7 @@ const BookCardCart: React.FC<ICardProps> = ({ book }) => {
           ).toFixed(2)}`}</Typography>
         </div>
         <div className={styles.closeButton}>
-          <CloseButton onClick={handleClick} />
+          <CloseButton className={styles.btClose} onClick={handleClick} />
         </div>
       </div>
     </>

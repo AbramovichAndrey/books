@@ -13,8 +13,8 @@ const Card: React.FC<ICardProps> = ({ book }) => {
   return (
     <>
       <div className={styles.wrapper}>
-        <RandomColor fullWidth>
-          <img src={book.image} alt={book.title} />
+        <RandomColor fullWidth className={styles.imgWrap}>
+          <img className={styles.img} src={book.image} alt={book.title} />
         </RandomColor>
         <Typography className={styles.text} variant="h5">
           {book.title}

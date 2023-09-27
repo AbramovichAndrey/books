@@ -54,7 +54,9 @@ const Header: React.FC = () => {
           style={{ textDecoration: "none" }}
           to={"/"}
         >
-          <Typography variant={"h1"}>BOOKSTORE</Typography>
+          <Typography className={styles.fontSizelogo} variant={"h1"}>
+            BOOKSTORE
+          </Typography>
         </NavLink>
       </div>
       <div className={styles.inputWrapper}>
@@ -104,14 +106,14 @@ const Header: React.FC = () => {
               to={"/favorites"}
             >
               <div className={styles.burgerItem}>
+                <Typography variant="h5">Favorites</Typography>
                 <AiOutlineHeart className={styles.icon} />
-                <Typography variant="span">Favorites</Typography>
               </div>
             </NavLink>
           </div>
           <div className={styles.burgerItem}>
+            <Typography variant="h5">Sign In</Typography>
             <AiOutlineUser className={styles.icon} />
-            <Typography variant="span">Sign In/Sign Up</Typography>
           </div>
         </div>
       )}

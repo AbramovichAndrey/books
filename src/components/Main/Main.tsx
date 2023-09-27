@@ -45,16 +45,18 @@ const Main: React.FC = () => {
       {search === "" && (
         <div>
           <div className={styles.title}>
-            <Typography variant="h1">NEW RELEASES BOOKS</Typography>
+            <Typography className={styles.fontSizeTitle} variant="h1">
+              NEW RELEASES BOOKS
+            </Typography>
           </div>
 
           <div className={styles.books}>
             {loading && <Loading />}
             {!loading && books.length > 0 && <ListOfBook books={books} />}
           </div>
-          {/* <div className={styles.subscribeWrapper}>
+          <div className={styles.subscribeWrapper}>
             <Subscribe />
-          </div> */}
+          </div>
         </div>
       )}
       {search != "" && (

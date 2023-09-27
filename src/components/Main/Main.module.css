@@ -22,6 +22,9 @@
 .loading {
   margin: 0 auto;
 }
-
-@media screen and (max-width: 1120px) {
+@media screen and (max-width: 768px) {
+  .fontSizeTitle {
+    font-size: 36px;
+    line-height: 55px;
+  }
 }

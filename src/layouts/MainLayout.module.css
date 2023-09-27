@@ -13,6 +13,9 @@
   max-height: 95px;
   margin: 0 auto;
 }
+.footer {
+  margin: 0 auto;
+}
 
 @media screen and (max-width: 1120px) {
   .app {
@@ -23,6 +26,16 @@
   }
   .footer {
     max-width: 688px;
-    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .app {
+    max-width: 350px;
+  }
+  .header {
+    max-width: 350px;
+  }
+  .footer {
+    max-width: 350px;
   }
 }

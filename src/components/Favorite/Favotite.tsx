@@ -1,18 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./Favorite.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSlice } from "../../store/books/books.selectors";
-import { setFavorites } from "../../store/books/books.reducer";
 import Typography from "../Typography/Typography";
 import BookCardFavorite from "../BookCardFavorite/BookCardFavorite";
 import { BsArrowLeft } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
-import { useDidUpdate } from "../../hooks/useDidUpdate";
 
 const Favorite: React.FC = () => {
   const { favoriteBooks } = useSelector(getSlice);
-
-  const dispath = useDispatch();
 
   if (favoriteBooks.length === 0) {
     return (
@@ -27,7 +23,7 @@ const Favorite: React.FC = () => {
       <div>
         <NavLink to={"/"}>
           <button className={styles.backButton}>
-            <BsArrowLeft />
+            <BsArrowLeft style={{ color: "black" }} />
           </button>
         </NavLink>
         <Typography variant="h1">Favorites</Typography>
@@ -35,14 +31,8 @@ const Favorite: React.FC = () => {
       <ul className={styles.books}>
         {favoriteBooks.map((book) => (
           <li className={styles.book} key={book.isbn13}>
-            <NavLink
-              style={{ textDecoration: "none", color: "black" }}
-              to={`/book/${book.isbn13}`}
-            >
-              <BookCardFavorite book={book} />
-            </NavLink>
+            <BookCardFavorite book={book} />
           </li>
-          // </NavLink>
         ))}
       </ul>
     </>

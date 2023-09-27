@@ -1,4 +1,4 @@
-import React, { useEffect, MouseEvent } from "react";
+import React from "react";
 import styles from "./BookCardFavorite.module.css";
 import RandomColor from "../RandomColor/RandomColor";
 import { IBook } from "../../models/book.model";

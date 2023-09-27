@@ -18,3 +18,9 @@
   justify-content: center;
   margin-top: 50px;
 }
+@media screen and (max-width: 768px) {
+  .haventBooksText {
+    font-size: 30px;
+    line-height: 55px;
+  }
+}

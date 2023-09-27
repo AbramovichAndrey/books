@@ -12,3 +12,7 @@
 .backButton:hover {
   cursor: pointer;
 }
+.totalOrderWrapper {
+  display: flex;
+  justify-content: right;
+}

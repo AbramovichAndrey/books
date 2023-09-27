@@ -1,9 +1,9 @@
 .wrapper {
   margin-top: 30px;
   display: flex;
-  justify-content: flex-start;
   gap: 30px;
   border-bottom: 1px solid #a8a8a8;
+  padding-bottom: 40px;
 }
 .infoWrapper {
   flex-grow: 1;
@@ -16,16 +16,14 @@
 .imgWrapper {
   margin-bottom: 30px;
 }
-.closeButtonL:hover {
+.closeButton:hover {
   cursor: pointer;
 }
-
 .closeButton {
-  margin-left: 30px;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
+
 .countWrapper {
   width: 50%;
   display: flex;
@@ -33,8 +31,8 @@
 }
 .price {
   display: flex;
-  justify-content: center;
   align-items: center;
+  margin-right: 50px;
 }
 .button {
   background-color: transparent;
@@ -42,4 +40,54 @@
 }
 .button:hover {
   cursor: pointer;
+}
+.priceAndButWrap {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+@media screen and (max-width: 1120px) {
+  .closeButton {
+    align-items: flex-start;
+  }
+
+  .imgWrapper {
+    width: 200px;
+    height: 200px;
+  }
+  .img {
+    width: 200px;
+    height: 200px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    position: relative;
+  }
+  .imgWrapper {
+    width: 100%;
+    height: 250px;
+  }
+  .closeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #313037;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btClose {
+    color: white;
+  }
+  .countWrapper {
+    width: 100%;
+  }
+  .price {
+    justify-content: right;
+    margin-right: 0px;
+  }
 }

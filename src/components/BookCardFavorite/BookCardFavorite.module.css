@@ -1,5 +1,5 @@
 .wrapper {
-    margin-top: 30px;
+  margin-top: 30px;
   display: flex;
   justify-content: flex-start;
   gap: 30px;
@@ -28,4 +28,39 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width: 1120px) {
+  .imgWrapper {
+    width: 200px;
+    height: 200px;
+  }
+  .img {
+    width: 200px;
+    height: 200px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    position: relative;
+    gap: 10px;
+  }
+  .imgWrapper {
+    width: 100%;
+    height: 250px;
+  }
+  .heartWrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #313037;
+    width: 45px;
+    height: 45px;
+  }
+  .heart {
+    font-size: 25px;
+  }
+  .infoWrapper {
+    margin-bottom: 30px;
+  }
 }

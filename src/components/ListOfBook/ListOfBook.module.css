@@ -26,7 +26,12 @@
 
 @media screen and (max-width: 1120px) {
   .book {
-    /* margin-left: 52px; */
     flex: 0 0 calc(100% / 2 - 24px);
+  }
+}
+@media screen and (max-width: 768px) {
+  .book {
+    margin: 12px 0;
+    flex: 0 0 calc(100%);
   }
 }

@@ -28,7 +28,7 @@ const Cart: React.FC = () => {
       <div>
         <NavLink to={"/"}>
           <button className={styles.backButton}>
-            <BsArrowLeft />
+            <BsArrowLeft style={{ color: "black" }} />
           </button>
         </NavLink>
         <Typography variant="h1">YOUR CART</Typography>
@@ -40,8 +40,9 @@ const Cart: React.FC = () => {
           </li>
         ))}
       </ul>
-
-      <TotalOrder total={total} />
+      <div className={styles.totalOrderWrapper}>
+        <TotalOrder total={total} />
+      </div>
     </>
   );
 };

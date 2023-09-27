@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   width: 200px;
-  float: right;
 }
 
 .infoWrap {
@@ -13,4 +12,9 @@
 }
 .button {
   margin-top: 20px;
+}
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
 }
