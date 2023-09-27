@@ -13,6 +13,8 @@ import { AppDispatch } from "../../store";
 import Pagination from "../Pagination/Pagination";
 import { setActivePage } from "../../store/books/books.reducer";
 import Loading from "../Loading/Loading";
+import SearchInput from "../SearchInput/SearchInput";
+import { useMedia } from "../../hooks/useMedia";
 
 const Main: React.FC = () => {
   const {
@@ -25,6 +27,8 @@ const Main: React.FC = () => {
     activePage,
   } = useSelector(getSlice);
   const dispatch = useDispatch<AppDispatch>();
+
+  const { isMobile } = useMedia();
 
   useEffect(() => {
     dispatch(getNewBooksThunk());
@@ -42,6 +46,7 @@ const Main: React.FC = () => {
 
   return (
     <>
+      {isMobile && <SearchInput className={styles.input} />}
       {search === "" && (
         <div>
           <div className={styles.title}>
@@ -65,7 +70,7 @@ const Main: React.FC = () => {
           {!searchLoading && searchBooks.length > 0 && (
             <>
               <div className={styles.title}>
-                <Typography variant="h1">{`'${search}' SEARCH RESULTS`}</Typography>
+                <Typography className={styles.searchResultText} variant="h1">{`'${search}' SEARCH RESULTS`}</Typography>
                 <Typography
                   variant="span"
                   font="secondaryFont"

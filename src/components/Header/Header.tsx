@@ -13,38 +13,19 @@ import {
   AiOutlineSearch,
 } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
-import { getBooksBySearch } from "../../store/books/books.actions";
-import { getSlice } from "../../store/books/books.selectors";
 import { setSearch } from "../../store/books/books.reducer";
-import debounce from "lodash.debounce";
-import { useDidUpdate } from "../../hooks/useDidUpdate";
 import clsx from "clsx";
+import SearchInput from "../SearchInput/SearchInput";
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const { search } = useSelector(getSlice);
   const dispatch = useDispatch<AppDispatch>();
 
   const handelChangeBurgerState = () => {
     setOpen(!open);
   };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearch(e.target.value));
-  };
-
-  const debouncedSetSearch = useCallback(
-    debounce((searchValue: string, page: string) => {
-      dispatch(getBooksBySearch({ searchValue, page }));
-    }, 300),
-    [dispatch]
-  );
-
-  useDidUpdate(() => {
-    if (search !== "") debouncedSetSearch(search, "1");
-  }, [debouncedSetSearch, search]);
 
   return (
     <div className={styles.wrapper}>
@@ -60,14 +41,7 @@ const Header: React.FC = () => {
         </NavLink>
       </div>
       <div className={styles.inputWrapper}>
-        <Input
-          type="text"
-          className={styles.input}
-          placeholder="Search"
-          value={search}
-          onChange={handleChange}
-          name={"search"}
-        />
+        <SearchInput className={styles.input} />
         <button className={styles.searchBut}>
           <AiOutlineSearch />
         </button>

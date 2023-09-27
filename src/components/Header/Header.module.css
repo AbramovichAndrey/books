@@ -45,7 +45,7 @@
 }
 .burgerMenuWrapper {
   width: 100%;
-  height: 80px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -66,7 +66,7 @@
     display: block;
   }
   .input {
-    width: 300px;
+    display: none;
   }
   .favBut {
     display: none;
@@ -74,15 +74,15 @@
   .userBut {
     display: none;
   }
-}
-@media screen and (max-width: 768px) {
-  .input {
-    display: none;
-  }
   .searchBut {
     display: none;
   }
+}
+@media screen and (max-width: 768px) {
   .fontSizelogo {
     font-size: 36px;
+  }
+  .burgerMenuWrapper {
+    height: 80px;
   }
 }

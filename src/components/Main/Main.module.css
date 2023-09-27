@@ -22,8 +22,17 @@
 .loading {
   margin: 0 auto;
 }
+.input {
+  width: 100%;
+  border-radius: 0px;
+  height: 50px;
+}
 @media screen and (max-width: 768px) {
   .fontSizeTitle {
+    font-size: 36px;
+    line-height: 55px;
+  }
+  .searchResultText {
     font-size: 36px;
     line-height: 55px;
   }
