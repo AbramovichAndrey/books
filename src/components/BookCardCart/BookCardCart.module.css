@@ -81,7 +81,7 @@
     align-items: center;
   }
   .btClose {
-    color: white;
+    color: white !important;
   }
   .countWrapper {
     width: 100%;
