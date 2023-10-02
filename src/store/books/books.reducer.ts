@@ -50,6 +50,9 @@ const bookSlice = createSlice({
   name: "books",
   initialState,
   reducers: {
+    setNewBooks: (state,action:PayloadAction<IBook[]>) =>{
+      state.books = action.payload
+    },
     deleteBook: (state) => {
       state.book = initialState.book;
     },
@@ -145,6 +148,7 @@ const bookSlice = createSlice({
 });
 
 export const {
+  setNewBooks,
   deleteBook,
   toggleBookIsFavorite,
   setFavorites,

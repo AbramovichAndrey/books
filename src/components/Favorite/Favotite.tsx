@@ -6,9 +6,10 @@ import Typography from "../Typography/Typography";
 import BookCardFavorite from "../BookCardFavorite/BookCardFavorite";
 import { BsArrowLeft } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
+import SliderComponent from "../Slider/SliderComponent";
 
 const Favorite: React.FC = () => {
-  const { favoriteBooks } = useSelector(getSlice);
+  const { favoriteBooks, books } = useSelector(getSlice);
 
   if (favoriteBooks.length === 0) {
     return (
@@ -35,6 +36,7 @@ const Favorite: React.FC = () => {
           </li>
         ))}
       </ul>
+      <SliderComponent books={books} />
     </>
   );
 };

@@ -28,7 +28,7 @@ const Main: React.FC = () => {
   } = useSelector(getSlice);
   const dispatch = useDispatch<AppDispatch>();
 
-  const { isMobile } = useMedia();
+  const { isTablet } = useMedia();
 
   useEffect(() => {
     dispatch(getNewBooksThunk());
@@ -46,7 +46,7 @@ const Main: React.FC = () => {
 
   return (
     <>
-      {isMobile && <SearchInput className={styles.input} />}
+      {isTablet && <SearchInput className={styles.input} />}
       {search === "" && (
         <div>
           <div className={styles.title}>
@@ -70,7 +70,10 @@ const Main: React.FC = () => {
           {!searchLoading && searchBooks.length > 0 && (
             <>
               <div className={styles.title}>
-                <Typography className={styles.searchResultText} variant="h1">{`'${search}' SEARCH RESULTS`}</Typography>
+                <Typography
+                  className={styles.searchResultText}
+                  variant="h1"
+                >{`'${search}' SEARCH RESULTS`}</Typography>
                 <Typography
                   variant="span"
                   font="secondaryFont"

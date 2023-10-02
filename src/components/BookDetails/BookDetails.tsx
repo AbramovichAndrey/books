@@ -21,10 +21,11 @@ import BookDetailsInfo from "../BookDetailsInfo/BookDetailsInfo";
 import { AppDispatch } from "../../store";
 import { getBookThunk } from "../../store/books/books.actions";
 import Loading from "../Loading/Loading";
+import SliderComponent from "../Slider/SliderComponent";
 
 const BooksDetails: React.FC = () => {
   const { id: bookId } = useParams();
-  const { book, isBookLoading: loading } = useSelector(getSlice);
+  const { book, isBookLoading: loading, books } = useSelector(getSlice);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleClick = (e: MouseEvent) => {
@@ -94,6 +95,8 @@ const BooksDetails: React.FC = () => {
           </div>
 
           <Subscribe />
+
+          {books.length > 0 && <SliderComponent books={books} />}
         </>
       )}
     </div>
