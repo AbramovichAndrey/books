@@ -6,31 +6,16 @@ import Typography from "../Typography/Typography";
 import { IBookDetails } from "../../models/bookDetails.model";
 import { useDispatch, useSelector } from "react-redux";
 import { getSlice } from "../../store/books/books.selectors";
-import { addBookToCart } from "../../store/books/books.reducer";
-import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import { addBookToCart, setSnackBar } from "../../store/books/books.reducer";
+import SnackBar from "../SnackBar/SnackBar";
 
 interface IBookDetailsInfoProps {
   iBook: IBookDetails;
-}
-interface State extends SnackbarOrigin {
-  open: boolean;
 }
 
 const BookDetailsInfo: React.FC<IBookDetailsInfoProps> = ({ iBook }) => {
   const { book } = useSelector(getSlice);
   const dispatch = useDispatch();
-
-  // Snackbar
-  const [state, setState] = useState<State>({
-    open: false,
-    vertical: "bottom",
-    horizontal: "right",
-  });
-  const { vertical, horizontal, open } = state;
-
-  const handleClose = () => {
-    setState({ ...state, open: false });
-  };
 
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
@@ -38,7 +23,7 @@ const BookDetailsInfo: React.FC<IBookDetailsInfoProps> = ({ iBook }) => {
     if (book) {
       dispatch(addBookToCart(book));
     }
-    setState({ ...state, open: true });
+    dispatch(setSnackBar(true));
   };
 
   return (
@@ -84,14 +69,6 @@ const BookDetailsInfo: React.FC<IBookDetailsInfoProps> = ({ iBook }) => {
 
         <MainButton className={styles.addBut} onClick={handleClick}>
           <Typography color="secondary"> ADD TO CART </Typography>
-          <Snackbar
-            anchorOrigin={{ vertical, horizontal }}
-            open={open}
-            onClose={handleClose}
-            autoHideDuration={3000}
-            message="Book add to cart"
-            key={vertical + horizontal}
-          />
         </MainButton>
 
         {typeof iBook.pdf === "object" && Object.keys(iBook.pdf).length > 0 && (
@@ -109,6 +86,7 @@ const BookDetailsInfo: React.FC<IBookDetailsInfoProps> = ({ iBook }) => {
           </div>
         )}
       </div>
+      <SnackBar />
     </div>
   );
 };

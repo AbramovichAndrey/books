@@ -83,17 +83,14 @@ const BooksDetails: React.FC = () => {
               <BookDetailsInfo iBook={book} />
             </div>
           </div>
-
           {/* Tabs */}
           <BookDetailsTabs book={book} />
-
           {/* Icons */}
           <div className={styles.socialIconWrapper}>
             <SlSocialFacebook className={styles.socialIcon} />
             <CiTwitter className={styles.socialIcon} />
             <FiMoreHorizontal className={styles.socialIcon} />
           </div>
-
           <Subscribe />
 
           {books.length > 0 && <SliderComponent books={books} />}

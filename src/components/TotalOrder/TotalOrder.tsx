@@ -8,6 +8,10 @@ interface IBookProps {
 }
 
 const TotalOrder: React.FC<IBookProps> = ({ total }) => {
+  const showVAT = total > 100;
+  const vatAmount = showVAT ? 12.5 : 0;
+  const totalPrice = total + vatAmount;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.infoWrap}>
@@ -18,17 +22,19 @@ const TotalOrder: React.FC<IBookProps> = ({ total }) => {
           {`$ ${total.toFixed(2)}`}
         </Typography>
       </div>
-      <div className={styles.infoWrap}>
-        <Typography font="secondaryFont" variant="span" color="secondary">
-          VAT
-        </Typography>
-        <Typography font="secondaryFont" variant="span" color="secondary">
-          $ 12.50
-        </Typography>
-      </div>
+      {showVAT && (
+        <div className={styles.infoWrap}>
+          <Typography font="secondaryFont" variant="span" color="secondary">
+            VAT
+          </Typography>
+          <Typography font="secondaryFont" variant="span" color="secondary">
+            {`$ ${vatAmount.toFixed(2)}`}
+          </Typography>
+        </div>
+      )}
       <div className={styles.infoWrap}>
         <Typography variant="h5">TOTAL:</Typography>
-        <Typography variant="h5">{`$ ${(total - 12.5).toFixed(2)}`}</Typography>
+        <Typography variant="h5">{`$ ${totalPrice.toFixed(2)}`}</Typography>
       </div>
       <MainButton className={styles.button}>
         <Typography color="secondary">CHECK OUT</Typography>

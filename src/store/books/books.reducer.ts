@@ -25,6 +25,7 @@ interface BookState {
   isSearchLoading: boolean;
 
   activePage: number;
+  snackBar: boolean;
 }
 
 const initialState: BookState = {
@@ -44,12 +45,16 @@ const initialState: BookState = {
   isSearchLoading: false,
 
   activePage: 1,
+  snackBar: false,
 };
 
 const bookSlice = createSlice({
   name: "books",
   initialState,
   reducers: {
+    setSnackBar: (state,action:PayloadAction<boolean>)=>{
+      state.snackBar = action.payload
+    },
     setNewBooks: (state,action:PayloadAction<IBook[]>) =>{
       state.books = action.payload
     },
@@ -159,6 +164,7 @@ export const {
   decCountBook,
   setSearch,
   setActivePage,
+  setSnackBar,
 } = bookSlice.actions;
 
 export default bookSlice.reducer;
