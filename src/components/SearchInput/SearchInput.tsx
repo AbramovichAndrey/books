@@ -29,6 +29,7 @@ const SearchInput: React.FC<IPropsSearchInput> = ({ className }) => {
   useDidUpdate(() => {
     if (search !== "") debouncedSetSearch(search, "1");
   }, [debouncedSetSearch, search]);
+
   return (
     <>
       <Input
