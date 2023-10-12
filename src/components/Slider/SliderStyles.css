@@ -15,17 +15,17 @@
   right: 50px;
 }
 
-/* .slick-track {
+.slick-track {
   display: flex !important;
-} */
+}
 
 /* .slick-slide > div {
   height: 100%;
 } */
 
-/* .slick-slide {
-  height: inherit !important;
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-} */
+.slick-slide {
+  height: auto;
+  /* display: flex !important; */
+  /* justify-content: center;
+  align-items: center; */
+}

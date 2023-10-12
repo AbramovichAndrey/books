@@ -16,7 +16,7 @@
 
 .sliderItem {
   padding: 0 12px;
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: max-content;

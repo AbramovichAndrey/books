@@ -1,52 +1,36 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import styles from "./SignUp.module.css";
 import MainButton from "../Buttons/MainButton/MainButton";
 import Input from "../Input/Input";
 import Typography from "../Typography/Typography";
+import styles from "./SignIn.module.css";
 
 interface IFormValues {
-  name: string;
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
 interface IFormErrors {
-  name?: string;
   email?: string;
   password?: string;
 }
 
 const initialValues: IFormValues = {
-  name: "",
   email: "",
   password: "",
-  confirmPassword: "",
 };
 
 const validation = (formValues: IFormValues): IFormErrors => {
   const errors: IFormErrors = {};
-
-  if (formValues.name.length === 0) {
-    errors.name = "Required";
-  }
-
   if (formValues.email.length === 0) {
     errors.email = "Required";
   }
-
   if (formValues.password.length === 0) {
     errors.password = "Required";
   }
-
-  if (formValues.password != formValues.confirmPassword) {
-    errors.password = "Password and confirm password should be equal";
-  }
-
   return errors;
 };
 
-const SignUp: React.FC = () => {
+const SignIn: React.FC = () => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<IFormErrors | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -54,9 +38,9 @@ const SignUp: React.FC = () => {
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }, []);
+
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
-
     const errors = validation(values);
 
     if (Object.keys(errors).length > 0) {
@@ -67,6 +51,7 @@ const SignUp: React.FC = () => {
       setErrors(null);
     }
   };
+
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
@@ -76,21 +61,11 @@ const SignUp: React.FC = () => {
       <Input
         className={styles.input}
         ref={inputRef}
-        helperText={errors?.name}
-        error={!!errors?.name}
-        name="name"
-        label="Name"
-        value={values.name}
-        placeholder="Name"
-        onChange={handleChange}
-      />
-      <Input
-        className={styles.input}
         helperText={errors?.email}
         error={!!errors?.email}
+        placeholder="Your email"
         name="email"
         label="Email"
-        placeholder="Email"
         value={values.email}
         onChange={handleChange}
       />
@@ -98,27 +73,20 @@ const SignUp: React.FC = () => {
         className={styles.input}
         helperText={errors?.password}
         error={!!errors?.password}
+        placeholder="Your password"
         name="password"
         label="Password"
-        placeholder="Password"
         value={values.password}
         onChange={handleChange}
       />
-      <Input
-        className={styles.input}
-        name="confirmPassword"
-        label="Confirm password"
-        placeholder="Confirm Password"
-        value={values.confirmPassword}
-        onChange={handleChange}
-      />
+      <p className={styles.text}>Forgot password?</p>
       <MainButton className={styles.button} onClick={handleSubmit}>
         <Typography variant="h5" color="secondary">
-          Sign Up
+          Sign In
         </Typography>
       </MainButton>
     </form>
   );
 };
 
-export default SignUp;
+export default SignIn;

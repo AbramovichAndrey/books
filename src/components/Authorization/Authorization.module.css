@@ -1,0 +1,11 @@
+.tabs {
+  width: 544px;
+  margin: 0 auto;
+}
+.tabsWrapper {
+  margin-top: 50px;
+}
+.tabsContentWrapper {
+  margin: 0 auto;
+  width: 544px;
+}

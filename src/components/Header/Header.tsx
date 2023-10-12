@@ -5,7 +5,6 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 
 import Typography from "../Typography/Typography";
-import Input from "../Input/Input";
 import {
   AiOutlineHeart,
   AiOutlineShopping,
@@ -59,7 +58,12 @@ const Header: React.FC = () => {
         >
           <AiOutlineShopping className={styles.icon} />
         </NavLink>
-        <AiOutlineUser className={clsx(styles.icon, styles.userBut)} />
+        <NavLink
+          style={{ textDecoration: "none", color: "black" }}
+          to={"/authorization"}
+        >
+          <AiOutlineUser className={clsx(styles.icon, styles.userBut)} />
+        </NavLink>
         {open ? (
           <IoMdClose
             onClick={handelChangeBurgerState}
@@ -85,9 +89,16 @@ const Header: React.FC = () => {
               </div>
             </NavLink>
           </div>
-          <div className={styles.burgerItem}>
-            <Typography variant="h5">Sign In</Typography>
-            <AiOutlineUser className={styles.icon} />
+          <div>
+            <NavLink
+              style={{ textDecoration: "none", color: "black" }}
+              to={"/authorization"}
+            >
+              <div className={styles.burgerItem}>
+                <Typography variant="h5">Sign In</Typography>
+                <AiOutlineUser className={styles.icon} />
+              </div>
+            </NavLink>
           </div>
         </div>
       )}
