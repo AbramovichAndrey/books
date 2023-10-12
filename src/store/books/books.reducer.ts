@@ -23,6 +23,7 @@ interface BookState {
   search: string;
   searchBooks: IBook[];
   isSearchLoading: boolean;
+  isSearchNotFound: boolean;
 
   activePage: number;
   snackBar: boolean;
@@ -43,6 +44,7 @@ const initialState: BookState = {
   search: "",
   searchBooks: [],
   isSearchLoading: false,
+  isSearchNotFound: false,
 
   activePage: 1,
   snackBar: false,
@@ -142,10 +144,12 @@ const bookSlice = createSlice({
 
     builder.addCase(getBooksBySearch.pending, (state) => {
       state.isSearchLoading = true;
+      state.isSearchNotFound = false;
     });
 
     builder.addCase(getBooksBySearch.fulfilled, (state, action) => {
       state.isSearchLoading = false;
+      state.isSearchNotFound = true;
       state.searchBooks = action.payload.books;
       state.total = action.payload.total;
     });

@@ -24,6 +24,7 @@ const Main: React.FC = () => {
     total,
     isBooksLoading: loading,
     isSearchLoading: searchLoading,
+    isSearchNotFound: notFound,
     activePage,
   } = useSelector(getSlice);
   const dispatch = useDispatch<AppDispatch>();
@@ -91,7 +92,7 @@ const Main: React.FC = () => {
               </div>
             </>
           )}
-          {!searchLoading && searchBooks.length === 0 && (
+          {!searchLoading && notFound && (
             <>
               <Typography variant="h1" className={styles.notFound}>
                 BOOKS NOT FOUND
