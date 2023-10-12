@@ -9,3 +9,12 @@
   margin: 0 auto;
   width: 544px;
 }
+
+@media screen and (max-width: 768px) {
+  .tabs {
+    width: 300px;
+  }
+  .tabsContentWrapper {
+    width: 300px;
+  }
+}
