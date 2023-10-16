@@ -16,16 +16,10 @@
 }
 
 .slick-track {
-  display: flex !important;
+  display: flex;
 }
 
-/* .slick-slide > div {
+.slick-slide > div {
   height: 100%;
-} */
-
-.slick-slide {
-  height: auto;
-  /* display: flex !important; */
-  /* justify-content: center;
-  align-items: center; */
+  display: flex;
 }
